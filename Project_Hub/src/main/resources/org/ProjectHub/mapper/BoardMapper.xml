@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ProjectHub.mapper.BoardMapper">
+	<!-- 게시물 작성 -->
+	<insert id="writeBoard">
+		insert into board values(board_seq.nextval, #{bidentifier}, #{pno},
+		#{bwriter}, 0)
+
+		<!-- board_seq 값 bno에 저장 -->
+		<selectKey keyProperty="bno" resultType="int" order="AFTER">
+			SELECT
+			board_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 글 작성 -->
+	<insert id="writeText">
+		insert into text values(text_seq.nextval,
+		#{text_title}, #{text_content},
+		sysdate, #{bno})
+	</insert>
+
+	<!-- 업무 작성 -->
+	<insert id="writeTask">
+		insert into task values(task_seq.nextval,
+		#{task_title}, #{task_content},
+		#{task_status}, #{task_priority},
+		#{task_start}, #{task_last},
+		sysdate, #{bno})
+	</insert>
+
+	<!-- 일정 작성 -->
+	<insert id="writeSchedule">
+		insert into schedule values(schedule_seq.nextval,
+		#{schedule_title},
+		#{schedule_content}, #{schedule_location},
+		#{schedule_start},
+		#{schedule_last}, sysdate, #{bno})
+	</insert>
+
+	<!-- 댓글 작성 -->
+	<insert id="writeReply">
+		insert into reply values(reply_seq.nextval, #{reply_content}, sysdate,
+		#{reply_writer}, #{bno})
+
+		<!-- reply_seq 값 reply_no에 저장 -->
+		<selectKey keyProperty="reply_no" resultType="int"
+			order="AFTER">
+			SELECT reply_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- resultMap -->
+	<resultMap type="org.ProjectHub.domain.BoardDTO"
+		id="boardMap">
+		<id property="bno" column="bno" />
+		<result property="bidentifier" column="bidentifier" />
+		<result property="pno" column="pno" />
+		<result property="bwriter" column="bwriter" />
+		<result property="bfix" column="bfix" />
+		<collection property="textList" column="bno"
+			javaType="java.util.ArrayList" ofType="org.ProjectHub.domain.TextDTO"
+			select="textList" />
+		<collection property="taskList" column="bno"
+			javaType="java.util.ArrayList" ofType="org.ProjectHub.domain.TaskDTO"
+			select="taskList" />
+		<collection property="scheduleList" column="bno"
+			javaType="java.util.ArrayList"
+			ofType="org.ProjectHub.domain.ScheduleDTO" select="scheduleList" />
+		<collection property="replyList" column="bno"
+			javaType="java.util.ArrayList"
+			ofType="org.ProjectHub.domain.ReplyDTO" select="replyList" />
+		<collection property="bfileList" column="bno"
+			javaType="java.util.ArrayList"
+			ofType="org.ProjectHub.domain.BfileDTO" select="bfileList" />
+		<collection property="blike" column="bno" javaType="int"
+			ofType="int" select="blike" />
+	</resultMap>
+
+	<!-- 게시물 리스트 -->
+	<!-- 받아온 pno의 게시물 반환 -->
+	<select id="boardList" resultMap="boardMap">
+		select *
+		from (
+		select row_number() over(order by bno desc)
+		as row_num,
+		b.*
+		from board b where pno = #{pno}
+		)
+		<if test="firstRecordIndex !=null and lastRecordIndex != null">
+			where row_num between #{firstRecordIndex} and
+			#{lastRecordIndex}
+		</if>
+	</select>
+
+	<!-- 고정 게시물 리스트 -->
+	<select id="boardListFixed" resultMap="boardMap">
+		select * from board where
+		pno = #{pno} order by bno desc
+	</select>
+
+	<!-- 게시물 개수 -->
+	<select id="boardListCnt" resultType="int">
+		select count(*) from board
+		where pno = #{pno}
+	</select>
+
+	<!-- 글 리스트 -->
+	<select id="textList" resultType="org.ProjectHub.domain.TextDTO">
+		select * from text where bno =
+		#{bno}
+	</select>
+
+	<!-- 업무 리스트 -->
+	<select id="taskList" resultType="org.ProjectHub.domain.TaskDTO">
+		select * from task where bno =
+		#{bno}
+	</select>
+
+	<!-- 일정 리스트 -->
+	<select id="scheduleList"
+		resultType="org.ProjectHub.domain.ScheduleDTO">
+		select * from schedule where bno = #{bno}
+	</select>
+
+	<!-- 게시물 좋아요 -->
+	<select id="blike" resultType="int">
+		select count(*) from board_like
+		where bno = #{bno} and like_check = 1
+	</select>
+
+	<!-- 댓글 resultMap -->
+	<resultMap type="org.ProjectHub.domain.ReplyDTO"
+		id="replyMap">
+		<id property="reply_no" column="reply_no" />
+		<result property="reply_content" column="reply_content" />
+		<result property="reply_date" column="reply_date" />
+		<result property="reply_writer" column="reply_writer" />
+		<result property="bno" column="bno" />
+		<collection property="rfileList" column="reply_no"
+			javaType="java.util.ArrayList"
+			ofType="org.ProjectHub.domain.RfileDTO" select="rfileList" />
+	</resultMap>
+
+	<!-- 댓글 리스트 -->
+	<select id="replyList" resultMap="replyMap">
+		select * from reply where bno =
+		#{bno} order by reply_no desc
+	</select>
+	
+	<!-- 게시물 고정 - 검색 -->
+	<select id="boardFix_search" resultType="int">
+		select count(*) from board where bfix = 1 and bno = #{bno}
+	</select>
+
+	<!-- 게시물 고정 -->
+	<update id="boardFix">
+		update board set bfix = 1 where bno = #{bno}
+	</update>
+
+	<!-- 게시물 고정 취소 -->
+	<update id="boardFixCancel">
+		update board set bfix = 0 where bno = #{bno}
+	</update>
+
+	<!-- 글 삭제 -->
+	<delete id="deleteText">
+		delete from text where bno = #{bno}
+	</delete>
+
+	<!-- 업무 삭제 -->
+	<delete id="deleteTask">
+		delete from task where bno = #{bno}
+	</delete>
+
+	<!-- 일정 삭제 -->
+	<delete id="deleteSchedule">
+		delete from schedule where bno = #{bno}
+	</delete>
+
+	<!-- 게시물 삭제 -->
+	<delete id="deleteBoard">
+		delete from board where bno = #{bno}
+	</delete>
+
+	<!-- 글 제목 수정 -->
+	<update id="modifyTextTitle">
+		update text set text_title = #{text_title} where bno
+		= #{bno}
+	</update>
+
+	<!-- 글 내용 수정 -->
+	<update id="modifyTextContent">
+		update text set text_content = #{text_content} where
+		bno = #{bno}
+	</update>
+
+	<!-- 업무 제목 수정 -->
+	<update id="modifyTaskTitle">
+		update task set task_title = #{task_title} where bno
+		= #{bno}
+	</update>
+
+	<!-- 업무 내용 수정 -->
+	<update id="modifyTaskContent">
+		update task set task_content = #{task_content} where
+		bno = #{bno}
+	</update>
+
+	<!-- 일정 제목 수정 -->
+	<update id="modifyScheduleTitle">
+		update schedule set schedule_title =
+		#{schedule_title} where bno = #{bno}
+	</update>
+
+	<!-- 일정 내용 수정 -->
+	<update id="modifyScheduleContent">
+		update schedule set schedule_content =
+		#{schedule_content} where bno =
+		#{bno}
+	</update>
+
+	<!-- 게시글 파일 업로드 -->
+	<insert id="insertBfile">
+		insert into board_file (bfile_no, org_bfile_name,
+		stored_bfile_name,
+		bfile_size, bno)
+		values(bfile_seq.nextval,
+		#{org_bfile_name}, #{stored_bfile_name}, #{bfile_size}, #{bno})
+	</insert>
+
+
+	<!-- 게시글 파일 조회 -->
+	<select id="bfileList"
+		resultType="org.ProjectHub.domain.BfileDTO">
+		select bfile_no, stored_bfile_name, org_bfile_name,
+		round(bfile_size/1024,1)
+		as bfile_size
+		from board_file where bno =
+		#{bno} and del_gb = 'N' order by bfile_no
+	</select>
+
+	<!-- 게시글파일 다운 -->
+	<select id="bfileDown" resultType="hashMap">
+		select stored_bfile_name,
+		org_bfile_name from board_file
+		where bfile_no = #{bfile_no}
+	</select>
+
+	<!-- 게시글 파일 수정/삭제 -->
+	<update id="updateBfile">
+		update board_file set bel_gb = 'Y' where bfile_no =
+		#{bfile_no}
+	</update>
+
+	<!-- 댓글 파일 업로드 -->
+	<insert id="insertRfile">
+		insert into reply_file (rfile_no, org_rfile_name,
+		stored_rfile_name,
+		rfile_size, reply_no)
+		values(rfile_seq.nextval,
+		#{org_rfile_name}, #{stored_rfile_name}, #{rfile_size}, #{reply_no})
+	</insert>
+
+	<!-- 댓글 파일 조회 -->
+	<select id="rfileList"
+		resultType="org.ProjectHub.domain.RfileDTO">
+		select rfile_no, stored_rfile_name, org_rfile_name,
+		round(rfile_size/1024,1)
+		as rfile_size
+		from reply_file where reply_no =
+		#{reply_no} and del_gb = 'N' order by
+		rfile_no
+	</select>
+
+	<!-- 댓글 파일 다운 -->
+	<select id="rfileDown" resultType="hashMap">
+		select stored_rfile_name,
+		org_rfile_name from reply_file
+		where rfile_no = #{rfile_no}
+	</select>
+
+	<!-- 좋아요 체크 -->
+	<select id="likeCheck" resultType="int">
+		select like_check from
+		board_like where bno = #{bno} and email = #{email}
+	</select>
+
+	<!-- 좋아요 더하기 -->
+	<update id="likePlus">
+		update board_like set like_check = 1 where bno =
+		#{bno} and email = #{email}
+	</update>
+
+	<!-- 좋아요 빼기 -->
+	<update id="likeMinus">
+		update board_like set like_check = 0 where bno =
+		#{bno} and email = #{email}
+	</update>
+
+	<!-- 좋아요 만들기 -->
+	<insert id="likeMake">
+		insert into board_like values(like_seq.nextval,
+		#{bno}, #{email}, 1)
+	</insert>
+
+	<!-- 좋아요 개수 -->
+	<select id="likeCount" resultType="int">
+		select count(*) from
+		board_like where bno = #{bno} and like_check = 1
+	</select>
+
+	<!-- 좋아요 이메일 체크 -->
+	<select id="likeEmailCheck" resultType="int">
+		select count(*) from
+		board_like where bno = #{bno} and email = #{email}
+	</select>
+
+	<!-- 북마크 검색 -->
+	<select id="searchBookmark" resultType="int">
+		select count(*) from
+		bookmark where email = #{param1} and pno = #{param2}
+		and bno =
+		#{param3}
+	</select>
+	
+	<!-- 북마크 리스트 -->
+	<select id="searchBookmark_task" resultType="org.ProjectHub.domain.BookmarkDTO">
+		select bm.pno, bt.pname, bm.bno, bm.email, bt.bidentifier, bt.bwriter, bt.title, bt.day 
+		from bookmark bm, board_task bt
+		where bm.bno = bt.bno and bm.email = #{param1} and title like '%'||#{param2}||'%'
+	</select>
+	<select id="searchBookmark_text" resultType="org.ProjectHub.domain.BookmarkDTO">
+		select bm.pno, bx.pname, bm.bno, bm.email, bx.bidentifier, bx.bwriter, bx.title, bx.day 
+		from bookmark bm, board_text bx
+		where bm.bno = bx.bno and bm.email = #{param1} and title like '%'||#{param2}||'%'
+	</select>
+	<select id="searchBookmark_schedule" resultType="org.ProjectHub.domain.BookmarkDTO">
+		select bm.pno, bs.pname, bm.bno, bm.email, bs.bidentifier, bs.bwriter, bs.title, bs.day 
+		from bookmark bm, board_schedule bs
+		where bm.bno = bs.bno and bm.email = #{param1} and title like '%'||#{param2}||'%'
+	</select>
+
+	<!-- 북마크 취소 -->
+	<delete id="cancelBookmark">
+		delete from bookmark where email = #{param1} and pno
+		= #{param2} and bno = #{param3}
+	</delete>
+
+	<!-- 북마크 -->
+	<insert id="doBookmark">
+		insert into bookmark(bookmark_seq, pno, bno, email)
+		values(bm_seq.nextval, #{param2}, #{param3}, #{param1})
+	</insert>
+
+	<!-- 게시물 고정 카운트 -->
+	<select id="boardFixCount" resultType="int">
+		select count(*) from board
+		where pno= #{pno} and bFix = 1
+	</select>
+	
+	<!-- 글 수정 - 글 검색 -->
+	<select id="modifyText_bno" resultType="org.ProjectHub.domain.TextDTO">
+		select * from text where bno = #{bno} 
+	</select>
+	
+	<!-- 업무 수정 - 업무 검색 -->
+	<select id="modifyTask_bno" resultType="org.ProjectHub.domain.TaskDTO">
+		select * from task where bno = #{bno} 
+	</select>
+	
+	<!-- 일정 수정 - 일정 검색 -->
+	<select id="modifySchedule_bno" resultType="org.ProjectHub.domain.ScheduleDTO">
+		select * from schedule where bno = #{bno} 
+	</select>
+
+</mapper>

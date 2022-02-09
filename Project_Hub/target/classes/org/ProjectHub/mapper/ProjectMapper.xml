@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ProjectHub.mapper.ProjectMapper">
+
+	<!-- 프로젝트 생성 -->
+	<insert id="p_register">
+		insert into project values(project_seq.nextval, #{pname},
+		#{pdescription}, sysdate)
+
+		<!-- project_seq 값 pno에 저장 -->
+		<selectKey keyProperty="pno" resultType="int" order="AFTER">
+			SELECT
+			project_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+	<!-- 프로젝트 회원 등록 -->
+	<insert id="memberRegister">
+		insert into project_member(pmseq, pmadmin_num,
+		pmcolor, pmfavorite,
+		p_authstatus, pno, email)
+		values(pm_seq.nextval, 1,
+		'blue', 0, 1, #{pno}, #{email})
+	</insert>
+
+	<!-- 프로젝트 리스트 -->
+	<!-- 받아온 email의 project만 반환 -->
+	<select id="projectList"
+		resultType="org.ProjectHub.domain.ProjectMemberDTO">
+		select
+		pm.pmseq,pm.pmadmin_num,pm.pmcolor,pm.pmfavorite,pm.p_authstatus,pm.p_authkey,pm.pno,pm.email,p.pname,pc.pcount
+		from project p, project_member pm, project_count pc
+		where p.pno = pm.pno and pm.pno = pc.pno and email = #{email} order by p.pname desc
+	</select>
+
+	<!-- 프로젝트 회원 불러오기 -->
+	<select id="projectMemberlist"
+		resultType="org.ProjectHub.domain.ProjectMemberDTO">
+		select pm.pno, pm.pmadmin_num, pm.email, m.name 
+		from project_member pm, member m where pm.email = m.email and pno = #{param1} order by pm.pmadmin_num desc
+	</select>
+
+	<!-- 회원 프로젝트 정보 -->
+	<select id="projectMemberInfo"
+		resultType="org.ProjectHub.domain.ProjectMemberDTO">
+		select p.pno,p.pname,p.pdescription,p.pday,pm.pmseq,pm.email,pm.pmadmin_num,
+		pm.p_authkey,pm.p_authstatus,pm.pmcolor,pm.pmfavorite,m.name
+		from project p, project_member pm, member m where p.pno=pm.pno and
+		pm.email=m.email and pm.pno = #{param1} and pm.email = #{param2}
+	</select>
+
+	<!-- 프로젝트 정보 -->
+	<select id="projectInfo"
+		resultType="org.ProjectHub.domain.ProjectDTO">
+		select * from project where pno = #{pno}
+	</select>
+
+	<!-- 프로젝트 즐겨찾기O -->
+	<update id="favoriteO">
+		update project_member set pmfavorite = 1 where pno =
+		#{param1} and email=
+		#{param2}
+	</update>
+	<!-- 프로젝트 즐겨찾기X -->
+	<update id="favoriteX">
+		update project_member set pmfavorite = 0 where pno =
+		#{param1} and email=
+		#{param2}
+	</update>
+
+	<!-- 프로젝트 즐겨찾기 유무 확인 -->
+	<select id="favoriteCheck" resultType="int">
+		select count(*) from
+		project_member where pmfavorite = 1 and email =
+		#{email}
+	</select>
+
+	<!-- 프로젝트 컬러 변경 -->
+	<update id="projectColorUpdate">
+		update project_member set pmColor = #{param3} where
+		pno = #{param1} and
+		email= #{param2}
+	</update>
+
+	<!-- 프로젝트 나가기 -->
+	<delete id="projectExit">
+		delete from project_member where pno = #{param1} and
+		email = #{param2}
+	</delete>
+
+	<!-- 프로젝트 삭제 -->
+	<delete id="deleteProject">
+		delete from project where pno = #{param1}
+		
+	</delete>
+
+	<!-- 프로젝트 제목 수정 -->
+	<update id="modifyPname">
+		update project set pname = #{param2} where pname =
+		#{param1}
+	</update>
+
+	<!-- 프로젝트 설명 수정 -->
+	<update id="modifyPdescription">
+		update project set pdescription = #{param2} where
+		pdescription = #{param1}
+	</update>
+
+	<!-- 프로젝트 초대 - 등록 -->
+	<insert id="project_member_register">
+		insert into project_member(pmseq, pmadmin_num,
+		pmcolor, pmfavorite,
+		p_authstatus, pno, email)
+		values(pm_seq.nextval, 0,
+		'blue', 0, 1, #{param2}, #{param1})
+	</insert>
+
+	<!-- 프로젝트 초대 - 체크 -->
+	<select id="project_member_check" resultType="int">
+		select count(*) from
+		project_member where pno = #{param2} and email = #{param1}
+	</select>
+	
+	<!-- 프로젝트 회원 수 검색-->
+	<select id="projectMemberCount" resultType="int">
+		select pcount from
+		project_count where pno = #{param1}
+	</select>
+	
+	<!-- 관리자 체크 -->
+	<select id="adminCheck" resultType="int">
+		select pmadmin_num from
+		project_member where pno = #{param2} and email = #{param1}
+	</select>
+	
+	<!-- 관리자 지정 -->
+	<update id="adminSet">
+		update project_member set pmadmin_num = 1 where
+		pno = #{param2} and email= #{param1}
+	</update>
+	
+	<!-- 관리자 해제 -->
+	<update id="adminCancel">
+		update project_member set pmadmin_num = 0 where
+		pno = #{param2} and email= #{param1}
+	</update>
+	
+	<!-- 내보내기 -->
+	<delete id="exportMember">
+		delete from project_member where pno = #{param2} and
+		email = #{param1}
+	</delete>
+	
+	<!-- 참여자 검색 -->
+	<select id="searchMember" resultType="org.ProjectHub.domain.ProjectMemberDTO">
+		select pm.pno, pm.pmadmin_num, pm.email, m.name 
+		from project_member pm, member m where pm.email = m.email and pno = #{param2} 
+		and name like '%'||#{param1}||'%' order by pm.pmadmin_num desc
+	</select>
+	
+</mapper>

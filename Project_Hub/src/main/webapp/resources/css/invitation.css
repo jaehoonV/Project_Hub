@@ -1,0 +1,473 @@
+@charset "UTF-8";
+.join{
+	all:unset;
+}
+.join_div{
+	background: #fff;
+    border: 1px solid #ddd;
+    color: #555;
+    font-size: 15px;
+    line-height: 28px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    display: grid !important;
+    margin-top: 10px;
+}
+
+.join_div:hover{
+	border: 1px solid #c38fd9;
+	color: #212529;
+}
+#loginCheck:hover{
+	border: 1px solid #c38fd9;
+}
+
+.card-body{
+	width: 400px;
+	margin: 0 auto;
+}
+
+.project_invite_wrap {
+	width: 702px;
+	margin: 70px auto;
+	position: relative;
+}
+
+.invite_logo {
+	margin: 0 auto;
+	display: flex;
+	background-size: 465px 181px;
+	width: 135px;
+	height: 50px;
+}
+
+.invite_text {
+	display: block;
+	font-size: 15px;
+	color: #777;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 54px;
+}
+
+.invite_section {
+	width: 100%;
+	max-width: 670px;
+	height: auto;
+	padding: 20px;
+	margin: 0 auto;
+	background: linear-gradient(180deg, #f0eefb 0, #fbeef0 47.59%);
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	box-shadow: 20px 20px 30px rgb(0 0 0/ 20%);
+}
+
+.invite_section_wrap {
+	float: initial;
+	max-width: 100%;
+	margin: 20px auto 25px 0;
+	text-align: center;
+}
+
+.start_projectbtn {
+	margin: 0 auto;
+	width: 100%;
+	height: 50px;
+	font-size: 15px;
+	line-height: 48px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	text-align: center;
+}
+
+*, ::after, ::before {
+	box-sizing: border-box
+}
+
+@media ( prefers-reduced-motion :no-preference) {
+	:root {
+		scroll-behavior: smooth
+	}
+}
+
+
+label {
+	display: inline-block
+}
+
+button {
+	border-radius: 0
+}
+
+button:focus:not (:focus-visible ){
+	outline: 0
+}
+
+button, input {
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit
+}
+
+button {
+	text-transform: none
+}
+
+[role=button] {
+	cursor: pointer
+}
+
+[list]::-webkit-calendar-picker-indicator {
+	display: none
+}
+
+[type=button], [type=reset], [type=submit], button {
+	-webkit-appearance: button
+}
+
+[type=button]:not (:disabled ), [type=reset]:not (:disabled ), [type=submit]:not
+	(:disabled ), button:not (:disabled ){
+	cursor: pointer
+}
+
+[hidden] {
+	display: none !important
+}
+
+.form-label {
+	margin-bottom: .5rem
+}
+
+.form-text {
+	margin-top: .25rem;
+	font-size: .875em;
+	color: #6c757d
+}
+
+.form-control {
+	display: block;
+	width: 100%;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.form-control {
+		transition: none
+	}
+}
+
+.form-control[type=file] {
+	overflow: hidden
+}
+
+.form-control[type=file]:not (:disabled ):not ([readonly] ){
+	cursor: pointer
+}
+
+.form-control:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #fab19d;
+	outline: 0;
+	box-shadow: 0 0 0 .1rem rgba(195, 143, 217, 1)
+}
+
+.form-control::-webkit-date-and-time-value {
+	height: 1.5em
+}
+
+.form-control::-moz-placeholder {
+	color: #6c757d;
+	opacity: 1
+}
+
+.form-control:-ms-input-placeholder {
+	color: #6c757d;
+	opacity: 1
+}
+
+.form-control::placeholder {
+	color: #6c757d;
+	opacity: 1
+}
+
+.form-control:disabled, .form-control[readonly] {
+	background-color: #e9ecef;
+	opacity: 1
+}
+
+.form-control::-webkit-file-upload-button {
+	padding: .375rem .75rem;
+	margin: -.375rem -.75rem;
+	-webkit-margin-end: .75rem;
+	margin-inline-end: .75rem;
+	color: #212529;
+	background-color: #e9ecef;
+	pointer-events: none;
+	border-color: inherit;
+	border-style: solid;
+	border-width: 0;
+	border-inline-end-width: 1px;
+	border-radius: 0;
+	-webkit-transition: color .15s ease-in-out, background-color .15s
+		ease-in-out, border-color .15s ease-in-out, box-shadow .15s
+		ease-in-out;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.form-control::file-selector-button {
+	padding: .375rem .75rem;
+	margin: -.375rem -.75rem;
+	-webkit-margin-end: .75rem;
+	margin-inline-end: .75rem;
+	color: #212529;
+	background-color: #e9ecef;
+	pointer-events: none;
+	border-color: inherit;
+	border-style: solid;
+	border-width: 0;
+	border-inline-end-width: 1px;
+	border-radius: 0;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.form-control::-webkit-file-upload-button {
+		-webkit-transition: none;
+		transition: none
+	}
+	.form-control::file-selector-button {
+		transition: none
+	}
+}
+
+.form-control:hover:not (:disabled ):not ([readonly] )::-webkit-file-upload-button
+	{
+	background-color: #dde0e3
+}
+
+.form-control:hover:not (:disabled ):not ([readonly] )::file-selector-button
+	{
+	background-color: #dde0e3
+}
+
+.form-control::-webkit-file-upload-button {
+	padding: .375rem .75rem;
+	margin: -.375rem -.75rem;
+	-webkit-margin-end: .75rem;
+	margin-inline-end: .75rem;
+	color: #212529;
+	background-color: #e9ecef;
+	pointer-events: none;
+	border-color: inherit;
+	border-style: solid;
+	border-width: 0;
+	border-inline-end-width: 1px;
+	border-radius: 0;
+	-webkit-transition: color .15s ease-in-out, background-color .15s
+		ease-in-out, border-color .15s ease-in-out, box-shadow .15s
+		ease-in-out;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.form-control::-webkit-file-upload-button {
+		-webkit-transition: none;
+		transition: none
+	}
+}
+
+.form-control:hover:not (:disabled ):not ([readonly] )::-webkit-file-upload-button
+	{
+	background-color: #dde0e3
+}
+
+.form-floating {
+	position: relative
+}
+
+.form-floating>.form-control {
+	height: calc(3.5rem + 2px);
+	line-height: 1.25
+}
+
+.form-floating>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	padding: 1rem .75rem;
+	pointer-events: none;
+	border: 1px solid transparent;
+	transform-origin: 0 0;
+	transition: opacity .1s ease-in-out, transform .1s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.form-floating>label {
+		transition: none
+	}
+}
+
+.form-floating>.form-control {
+	padding: 1rem .75rem
+}
+
+.form-floating>.form-control::-moz-placeholder {
+	color: transparent
+}
+
+.form-floating>.form-control:-ms-input-placeholder {
+	color: transparent
+}
+
+.form-floating>.form-control::placeholder {
+	color: transparent
+}
+
+.form-floating>.form-control:not (:-moz-placeholder-shown ){
+	padding-top: 1.625rem;
+	padding-bottom: .625rem
+}
+
+.form-floating>.form-control:not (:-ms-input-placeholder ){
+	padding-top: 1.625rem;
+	padding-bottom: .625rem
+}
+
+.form-floating>.form-control:focus, .form-floating>.form-control:not (:placeholder-shown
+	){
+	padding-top: 1.625rem;
+	padding-bottom: .625rem
+}
+
+.form-floating>.form-control:-webkit-autofill {
+	padding-top: 1.625rem;
+	padding-bottom: .625rem
+}
+
+.form-floating>.form-control:focus, .form-floating>.form-control:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: .625rem
+}
+
+.form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label {
+    opacity: .65;
+    transform: scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.form-floating>.form-control:not (:-moz-placeholder-shown )~label{
+	opacity: .65;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.form-floating>.form-control:not (:-ms-input-placeholder )~label{
+	opacity: .65;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.form-floating>.form-control:focus ~label, .form-floating>.form-control:not
+	(:placeholder-shown )~label{
+	opacity: .65;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.form-floating>.form-control:-webkit-autofill ~label{
+	opacity: .65;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.btn {
+	display: inline-block;
+	font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.btn {
+		transition: none
+	}
+}
+
+.btn:hover {
+	color: #212529
+}
+
+.btn:focus {
+	outline: 0;
+	box-shadow: 0 0 0 .25rem rgba(48, 71, 140, .25)
+}
+
+.btn:disabled {
+	pointer-events: none;
+	opacity: .65
+}
+
+.btn-primary{
+	background: #fff;
+    border: 1px solid #ddd;
+	color: #555;
+	font-size: 15px;
+    line-height: 28px;
+    border-radius: 4px;
+    
+}
+
+.d-grid {
+	display: grid !important;
+}
+
+.mb-3 {
+	margin-bottom: 1rem !important;
+	
+}
+
+.btn-xl {
+	padding: 1.25rem 2.25rem;
+	font-size: .85rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 10rem
+}

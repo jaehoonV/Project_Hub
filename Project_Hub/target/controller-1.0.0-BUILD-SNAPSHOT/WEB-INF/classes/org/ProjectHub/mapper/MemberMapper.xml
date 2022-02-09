@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ProjectHub.mapper.MemberMapper">
+	<!-- 회원가입 -->
+	<insert id="register">
+		insert into member(email, password, name)
+		values(#{email}, #{password}, #{name})
+	</insert>
+
+	<!-- 생성된 메일 인증키 업데이트 -->
+	<update id="createAuthkey">
+		update member set authkey = #{param2} where email =
+		#{param1}
+	</update>
+
+	<!-- login_authstatus 컬럼을 0 에서 1로 업데이트 -->
+	<update id="updateAuthstatus">
+		update member set login_authstatus = 1 where email =
+		#{param1}
+	</update>
+
+	<!-- 이메일 중복 체크 -->
+	<select id="emailCheck" resultType="int">
+		select count(*) from member
+		where email = #{email}
+	</select>
+
+
+	<!-- 로그인 -->
+	<select id="login" resultType="int">
+		select count(*) from member where
+		email = #{param1} and password = #{param2}
+	</select>
+
+	<!-- 로그인 시 이메일 인증 체크 -->
+	<select id="loginAuthCheck" resultType="int">
+		select login_authstatus
+		from member where email = #{email}
+	</select>
+
+	<!-- 회원 정보 -->
+	<select id="MemberInfo"
+		resultType="org.ProjectHub.domain.MemberDTO">
+		select * from member where email = #{email}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPassword" resultType="int">
+		select count(*) from member where name = #{name} and email = #{email}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<select id="ResetPassword">
+		update member set password = #{password} where email = #{email}
+	</select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="change_name" parameterType="map">
+		update member set name = #{name, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+	<update id="change_company_name" parameterType="map">
+		update member set company_name = #{company_name, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+	<update id="change_job_position" parameterType="map">
+		update member set job_position = #{job_position, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+	<update id="change_phone_num" parameterType="map">
+		update member set phone_num = #{phone_num, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+	<update id="change_tel_num" parameterType="map">
+		update member set tel_num = #{tel_num, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+	<update id="change_pw" parameterType="map">
+		update member set password = #{password, jdbcType=VARCHAR} where email = #{email, jdbcType=VARCHAR}
+	</update>
+
+</mapper>
