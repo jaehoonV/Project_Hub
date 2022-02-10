@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#reply_content_input{
+.reply_content_input{
 	min-width:565px;
 	padding: 11px 60px 11px 20px;
     min-height: 44px;
@@ -11,7 +11,7 @@
     margin-bottom: 5px;
 }
 
-#reply_content_input:focus{
+.reply_content_input:focus{
 	border-color: #555;
     box-shadow: 2px 2px 6px rgb(0 0 0 / 15%);
     outline: 0;
@@ -61,12 +61,14 @@
     cursor: pointer;
 }
 
-#text_content-error, #task_content-error{
+#text_content-error, #task_content-error, #schedule_content-error,
+#modify_text_content-error, #modify_task_content-error, #modify_schedule_content-error{
    left: 260px;
    top: 100px;
 }
 
-#text_title-error, #task_title-error{
+#text_title-error, #task_title-error, #schedule_title-error,
+#modify_text_title-error, #modify_task_title-error, #modify_schedule_title-error{
    left: 260px;
    top: 34px;
 }
@@ -1371,9 +1373,9 @@ ul {
 }
 
 .apply_modal {
-   position: absolute;
-   padding: 7px;
-   width: 140px;
+	position: absolute;
+   	padding: 5px;
+	width: 130px;
    border: 1px solid #6449fc;
    border-radius: 20px;
    background-color: #6449fc;
@@ -1383,14 +1385,15 @@ ul {
    left: 55%;
    color: white;
    text-align: center;
-   display: table-cell;
-   vertical-align: middle;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 14px;
 }
 
 .invite_apply_modal {
    position: absolute;
-   padding: 7px;
-   width: 260px;
+   padding: 6px;
+   width: 230px;
    border: 1px solid #6449fc;
    border-radius: 20px;
    background-color: #6449fc;
@@ -1402,6 +1405,25 @@ ul {
    text-align: center;
    display: table-cell;
    vertical-align: middle;
+   font-size: 14px;
+}
+
+.reply_null_error{
+	position: absolute;
+	padding: 6px;
+   width: 190px;
+   border: 1px solid #ff3434;
+   border-radius: 20px;
+   background-color: #ff3434;
+   z-index: 1041;
+   overflow: auto;
+   top: 18%;
+   left: 39%;
+   color: white;
+   text-align: center;
+   display: table-cell;
+   vertical-align: middle;
+   font-size: 13px;
 }
 
 #selectColorTypes li span {
@@ -2071,13 +2093,13 @@ img {
    margin: 0px 20px;
 }
 
-#boardFix{
+.boardFix{
    all: unset;
    width: 1.6px;
    margin-right: 25px;
 }
 
-#boardFix:hover{
+.boardFix:hover{
    cursor: pointer;
 }
 

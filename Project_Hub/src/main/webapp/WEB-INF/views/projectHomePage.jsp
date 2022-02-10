@@ -568,6 +568,31 @@ $(document).ready(function () {
         }
     });//end validate()
     
+    $('#modifyTextForm').validate({
+        rules: {
+        	text_title: {
+                required: true
+            },
+            text_content: {
+                required: true
+            }
+        },
+        messages: {
+        	text_title: {
+                required: "제목을 입력해 주세요."
+            },
+            text_content: {
+                required: "내용을 입력해 주세요."
+            }
+        },
+        submitHandler: function () { //유효성 검사를 통과시 전송
+        	modifyTextForm.submit();
+        },
+        success: function (e) {
+            //
+        }
+    });//end validate()
+    
     /* 업무 작성 제목, 내용 null 방지 */
     $('#writeTaskForm').validate({
         rules: {
@@ -593,7 +618,93 @@ $(document).ready(function () {
             //
         }
     });//end validate()
-
+    $('#modifyTaskForm').validate({
+        rules: {
+        	task_title: {
+                required: true
+            },
+            task_content: {
+                required: true
+            }
+        },
+        messages: {
+        	task_title: {
+                required: "제목을 입력해 주세요."
+            },
+            task_content: {
+                required: "내용을 입력해 주세요."
+            }
+        },
+        submitHandler: function () { //유효성 검사를 통과시 전송
+        	modifyTaskForm.submit();
+        },
+        success: function (e) {
+            //
+        }
+    });//end validate()
+    
+    /* 일정 작성 제목, 내용 null 방지 */
+    $('#writeScheduleForm').validate({
+        rules: {
+        	schedule_title: {
+                required: true
+            },
+            schedule_content: {
+                required: true
+            }
+        },
+        messages: {
+        	schedule_title: {
+                required: "제목을 입력해 주세요."
+            },
+            schedule_content: {
+                required: "내용을 입력해 주세요."
+            }
+        },
+        submitHandler: function () { //유효성 검사를 통과시 전송
+        	writeScheduleForm.submit();
+        },
+        success: function (e) {
+            //
+        }
+    });//end validate()
+    $('#modifyScheduleForm').validate({
+        rules: {
+        	schedule_title: {
+                required: true
+            },
+            schedule_content: {
+                required: true
+            }
+        },
+        messages: {
+        	schedule_title: {
+                required: "제목을 입력해 주세요."
+            },
+            schedule_content: {
+                required: "내용을 입력해 주세요."
+            }
+        },
+        submitHandler: function () { //유효성 검사를 통과시 전송
+        	modifyScheduleForm.submit();
+        },
+        success: function (e) {
+            //
+        }
+    });//end validate()
+    
+    /* 댓글 null 방지 */
+    	$('.writeReplyForm').on('submit', function(){
+    		console.log($(this));
+    		let input_value = $(this).children('.reply_content_input').val();
+    		console.log('reply_content_input value ='+input_value);
+    		if(input_value == null || input_value == ''){
+    			$('.reply_null_error').css({ opacity: 0 }).animate({ opacity: 1 }, 1200);
+           	 $('.reply_null_error').css({ opacity: 1 }).animate({ opacity: 0 }, 700);
+    			return false;
+    		}
+   	 	});
+    
     // 프로젝트 색상 모달창에 현재 프로젝트 색상을 넘겨줌
     $("#projectColor, #dropdown_projectColor").click(function () {
         var color = $('#projectColor').val() + "✓";
@@ -650,6 +761,12 @@ $(document).ready(function () {
         $('.prrt_add').css('display', 'none');
         $('#task_status_checked').val(null);
         $('#task_priority_checked').val(null);
+    });
+    
+    $('#writeSchedule').on('hidden.bs.modal', function () {
+    	$('input').val(null);
+    	$('textarea').val(null);
+    	$('#schedule_location').val(null);
     });
     
     var pname = '${projectInfo.pname}';
@@ -1154,6 +1271,7 @@ body{
 	<main>
 		<div class="apply_modal" style="opacity: 0;">적용되었습니다.</div>
 		<div class="invite_apply_modal" style="opacity: 0;">초대 메일 발송을 완료했습니다.</div>
+		<div class="reply_null_error" style="opacity: 0;">댓글 내용을 입력하세요.</div>
 		<div class="modal fade" id="logout">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content logout-modal-content">
@@ -1667,7 +1785,7 @@ body{
 								<div class="boardStatus">
 									<form action="/boardFix" method="post">
 									<input type="hidden" name="bno" value="${boardList.bno}">
-									<button type="submit" id="boardFix"><i class="fas fa-thumbtack fixIcon"></i></button>
+									<button type="submit" class="boardFix"><i class="fas fa-thumbtack fixIcon"></i></button>
 									</form>
 									<div class="dropdown d-inline">
 										<a role="button"  data-toggle="dropdown" 
@@ -1968,11 +2086,11 @@ body{
                <div class="profile"></div>
                   <div class="card replyWriteBox">
                      <div class="card-body replyWriteMain">
-                        <form action="/writeReply" method="post" enctype="multipart/form-data">
+                        <form action="/writeReply" class="writeReplyForm" method="post" enctype="multipart/form-data">
                            <input type="hidden" name="reply_writer" value="${memberInfo.name }">
                            <input type="hidden" name="bno" value="${boardList.bno}">
-                           <input type="text" name="reply_content" id="reply_content_input" placeholder="입력은 Enter 입니다.">
-                           <input type="file" name="file" id="reply_input-file" class="upload-hidden" > 
+                           <input type="text" name="reply_content" class="reply_content_input" placeholder="입력은 Enter 입니다.">
+                           <input type="file" name="file" class="reply_input-file" class="upload-hidden" > 
                         </form>
                         </div>
                      </div>
