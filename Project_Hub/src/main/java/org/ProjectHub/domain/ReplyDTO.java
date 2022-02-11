@@ -12,6 +12,7 @@ public class ReplyDTO {
 	private String reply_content; // 댓글내용
 	private Date reply_date; // 댓글작성일
 	private String reply_writer; // 댓글작성자
+	private String rwriter_email; // 댓글작성자이메일
 	private int bno; // 게시물번호
 	private List<RfileDTO> rfileList; // 파일 리스트
 

@@ -11,6 +11,7 @@ public class BoardDTO {
 	private int bidentifier; // 식별번호
 	private int pno; // 프로젝트번호
 	private String bwriter; // 작성자
+	private String bwriter_email; // 작성자이메일
 	private int bfix; // 고정
 	private int blike; // 게시물 좋아요
 	private List<TextDTO> textList; // 글 리스트

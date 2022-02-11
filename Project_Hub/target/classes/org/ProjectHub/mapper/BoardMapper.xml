@@ -7,7 +7,7 @@
 	<!-- 게시물 작성 -->
 	<insert id="writeBoard">
 		insert into board values(board_seq.nextval, #{bidentifier}, #{pno},
-		#{bwriter}, 0)
+		#{bwriter}, #{bwriter_email}, 0)
 
 		<!-- board_seq 값 bno에 저장 -->
 		<selectKey keyProperty="bno" resultType="int" order="AFTER">
@@ -44,7 +44,7 @@
 	<!-- 댓글 작성 -->
 	<insert id="writeReply">
 		insert into reply values(reply_seq.nextval, #{reply_content}, sysdate,
-		#{reply_writer}, #{bno})
+		#{reply_writer}, #{rwriter_email}, #{bno})
 
 		<!-- reply_seq 값 reply_no에 저장 -->
 		<selectKey keyProperty="reply_no" resultType="int"
@@ -60,6 +60,7 @@
 		<result property="bidentifier" column="bidentifier" />
 		<result property="pno" column="pno" />
 		<result property="bwriter" column="bwriter" />
+		<result property="bwriter_email" column="bwriter_email" />
 		<result property="bfix" column="bfix" />
 		<collection property="textList" column="bno"
 			javaType="java.util.ArrayList" ofType="org.ProjectHub.domain.TextDTO"
@@ -139,6 +140,7 @@
 		<result property="reply_content" column="reply_content" />
 		<result property="reply_date" column="reply_date" />
 		<result property="reply_writer" column="reply_writer" />
+		<result property="rwriter_email" column="rwriter_email" />
 		<result property="bno" column="bno" />
 		<collection property="rfileList" column="reply_no"
 			javaType="java.util.ArrayList"

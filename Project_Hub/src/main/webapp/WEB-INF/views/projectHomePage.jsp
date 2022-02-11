@@ -1787,37 +1787,55 @@ body{
 									<input type="hidden" name="bno" value="${boardList.bno}">
 									<button type="submit" class="boardFix"><i class="fas fa-thumbtack fixIcon"></i></button>
 									</form>
+									<c:if test="${boardList.bwriter_email eq memberInfo.email || projectMemberInfo.pmadmin_num eq 1}">
 									<div class="dropdown d-inline">
 										<a role="button"  data-toggle="dropdown" 
 											data-bs-display="static" aria-expanded="false">
 										<i class="fas fa-ellipsis-v" id="projectSet"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="boardMenu">
-										<c:forEach items="${boardList.textList}" var="textList">
-											<div onclick="modifyText(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyText" style="cursor: pointer;">
-												<i class="fas fa-pencil-alt modifyText_btn"></i> 게시글 수정
-											</div>
-										</c:forEach>
-									
-										 <c:forEach items="${boardList.taskList}" var="taskList">
-										 	<div onclick="modifyTask(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyTask" style="cursor: pointer;">
-											<i class="fas fa-pencil-alt"></i> 게시글 수정
-											</div>
-										</c:forEach> 
-									
-              							 <c:forEach items="${boardList.scheduleList}" var="scheduleList">
-              							 	<div onclick="modifySchedule(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifySchedule" style="cursor: pointer;">
-											<i class="fas fa-pencil-alt"></i> 게시글 수정
-											</div>
-										</c:forEach> 
-										<form action="/deleteBoard" method="post">
-										<input type="hidden" name="bno" value="${boardList.bno}">
-										<button class="dropdown-item" type="submit">
-											<i class="far fa-trash-alt"></i> 게시글 삭제
-											</button>
-										</form>
+										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
+											<c:forEach items="${boardList.textList}" var="textList">
+												<div onclick="modifyText(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyText" style="cursor: pointer;">
+													<i class="fas fa-pencil-alt modifyText_btn"></i> 게시글 수정
+												</div>
+											</c:forEach>
+										</c:if>
+										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
+											<c:forEach items="${boardList.taskList}" var="taskList">
+										 		<div onclick="modifyTask(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyTask" style="cursor: pointer;">
+												<i class="fas fa-pencil-alt"></i> 게시글 수정
+												</div>
+											</c:forEach> 
+										</c:if>
+										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
+              								<c:forEach items="${boardList.scheduleList}" var="scheduleList">
+              							 		<div onclick="modifySchedule(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifySchedule" style="cursor: pointer;">
+												<i class="fas fa-pencil-alt"></i> 게시글 수정
+												</div>
+											</c:forEach>
+										</c:if>
+										<c:choose>
+											<c:when test="${boardList.bwriter_email eq memberInfo.email}">
+												<form action="/deleteBoard" method="post">
+													<input type="hidden" name="bno" value="${boardList.bno}">
+													<button class="dropdown-item" type="submit">
+														<i class="far fa-trash-alt"></i> 게시글 삭제
+													</button>
+												</form>
+											</c:when>
+											<c:when test="${projectMemberInfo.pmadmin_num eq 1}">
+												<form action="/deleteBoard" method="post">
+													<input type="hidden" name="bno" value="${boardList.bno}">
+													<button class="dropdown-item" type="submit">
+														<i class="far fa-trash-alt"></i> 게시글 삭제
+													</button>
+												</form>
+											</c:when>
+										</c:choose> 
 										</div>
 									</div>
+									</c:if>
 								</div>
 							</div> 
 							<br>
@@ -2088,6 +2106,7 @@ body{
                      <div class="card-body replyWriteMain">
                         <form action="/writeReply" class="writeReplyForm" method="post" enctype="multipart/form-data">
                            <input type="hidden" name="reply_writer" value="${memberInfo.name }">
+                           <input type="hidden" name="rwriter_email" value="${memberInfo.email }">
                            <input type="hidden" name="bno" value="${boardList.bno}">
                            <input type="text" name="reply_content" class="reply_content_input" placeholder="입력은 Enter 입니다.">
                            <input type="file" name="file" class="reply_input-file" class="upload-hidden" > 
@@ -2231,6 +2250,7 @@ body{
 						<input type="hidden" name="bidentifier" value="1">
 						<input type="hidden" name="pno" value="${projectInfo.pno }">
 						<input type="hidden" name="bwriter" value="${memberInfo.name }">
+						<input type="hidden" name="bwriter_email" value="${memberInfo.email }">
 						<div class="form-group">
 							<input name="text_title" type="text" id="text_title" placeholder="제목을 입력하세요.">
 							<textarea name="text_content" id="text_content" placeholder="내용을 입력하세요."></textarea>
@@ -2266,6 +2286,7 @@ body{
 						<input type="hidden" name="bidentifier" value="2">
 						<input type="hidden" name="pno" value="${projectInfo.pno }">
 						<input type="hidden" name="bwriter" value="${memberInfo.name }">
+						<input type="hidden" name="bwriter_email" value="${memberInfo.email }">
 						<input type="hidden" name="task_status" id="task_status_checked" value="0">
 						<input type="hidden" name="task_priority" id="task_priority_checked" value="0">
 						<div class="form-group">
@@ -2331,6 +2352,7 @@ body{
                   <input type="hidden" name="bidentifier" value="3">
                   <input type="hidden" name="pno" value="${projectInfo.pno }">
                   <input type="hidden" name="bwriter" value="${memberInfo.name }">
+                  <input type="hidden" name="bwriter_email" value="${memberInfo.email }">
                   <div class="form-group">
                   
                   <input name="schedule_title" type="text" class="form-control" id="schedule_title" placeholder="제목을 입력하세요.">
@@ -2458,9 +2480,9 @@ body{
             </div>
               <form action="/modifyTask" method="post" id="modifyTaskForm" enctype="multipart/form-data">
                <div class="modal-body">
-                  <input type="hidden" name="bidentifier" value="1">
+                  <%-- <input type="hidden" name="bidentifier" value="1">
                   <input type="hidden" name="pno" value="${projectInfo.pno }">
-                  <input type="hidden" name="bwriter" value="${memberInfo.name }">
+                  <input type="hidden" name="bwriter" value="${memberInfo.name }"> --%>
                   <input type="hidden" id= "modify_task_bno" name="bno">
                   <div class="form-group">
                      <input name="task_title" type="text" id="modify_task_title" placeholder="제목을 입력하세요.">
@@ -2519,7 +2541,6 @@ body{
             </div>
             <div class="modal-body">
               <form action="/modifySchedule" method="post" id="modifyScheduleForm" enctype="multipart/form-data">
-               
                   <input type="hidden" id= "modify_schedule_bno" name="bno">
                   <div class="form-group">
                   <input name="schedule_title" type="text" class="form-control" id="modify_schedule_title" placeholder="제목을 입력하세요.">
@@ -2574,7 +2595,6 @@ document.getElementById('schedule_last').value = new Date().toISOString().slice(
   	 
   	//페이지 이동
   	function movePage(currentPage, cntPerPage, pageSize){
-  	    
   	    var url = "${pageContext.request.contextPath}/projectHomePage";
   	    url = url + "?currentPage="+currentPage;
   	    url = url + "&cntPerPage="+cntPerPage;
