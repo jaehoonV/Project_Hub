@@ -1,6 +1,24 @@
 @charset "UTF-8";
 
-.reply_content_input{
+.modify_reply_modal{
+	position: absolute;
+    display: none;
+    z-index: 1;
+}
+
+.modify_reply{
+	float: right;
+    color: gray;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modify_reply:hover{
+	font-weight: 600;
+	color: #6449fc;
+}
+
+.reply_content_input, .modify_reply_content_input{
 	min-width:565px;
 	padding: 11px 60px 11px 20px;
     min-height: 44px;
@@ -11,7 +29,7 @@
     margin-bottom: 5px;
 }
 
-.reply_content_input:focus{
+.reply_content_input:focus, .modify_reply_content_input:focus{
 	border-color: #555;
     box-shadow: 2px 2px 6px rgb(0 0 0 / 15%);
     outline: 0;

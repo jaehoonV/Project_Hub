@@ -91,6 +91,17 @@ $(function () {
     	});
     });
 });
+$(function(){ // 댓글 수정
+	$('.modify_reply').on('click',function(){
+		let modify_reply_display = $(this).parents('.replyBody').children('.modify_reply_modal').css('display');
+		console.log('modify_reply click!' + modify_reply_display);
+		if(modify_reply_display == 'none'){
+			$(this).parents('.replyBody').children('.modify_reply_modal').css('display', 'block');
+		} else if(modify_reply_display == 'block'){
+			$(this).parents('.replyBody').children('.modify_reply_modal').css('display', 'none');
+		}
+	});
+});
 
 $(function () { // 업무상태,우선순위 추가 버튼 클릭
     $('.stts_addBtn').on('click',function () {
@@ -2014,9 +2025,18 @@ body{
 							<div class="replyMain">
 								<div class="profile"></div>
 								<div class="replyBody">
-									<p>
+									<p class="replyBody_p">
 										<span><c:out value="${replyList.reply_writer}"/></span>
 										<span class="writeDate"><fmt:formatDate pattern="yyyy/MM/dd" value="${replyList.reply_date}" /></span>
+										<c:if test="${replyList.rwriter_email eq memberInfo.email}">
+											<span class="modify_reply">수정</span>
+											<div class="modify_reply_modal">
+											<form action="/modifyReply" class="modifyReplyForm" method="post" enctype="multipart/form-data">
+                           						<input type="hidden" name="reply_no" value="${replyList.reply_no }">
+                           						<input type="text" name="modify_reply_content" class="modify_reply_content_input" placeholder="입력은 Enter 입니다.">
+                        					</form>
+                        					</div>
+										</c:if>
 									</p>
 									<p><c:out value="${replyList.reply_content}"/></p>
 									
