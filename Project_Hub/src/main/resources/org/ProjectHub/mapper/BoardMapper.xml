@@ -378,5 +378,11 @@
 	<select id="modifySchedule_bno" resultType="org.ProjectHub.domain.ScheduleDTO">
 		select * from schedule where bno = #{bno} 
 	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="modifyReply">
+		update reply set reply_content = #{reply_content} where
+		reply_no = #{reply_no}
+	</update>
 
 </mapper>

@@ -392,4 +392,15 @@ public class BoardController {
 		// 글 검색
 		return boardService.modifySchedule_bno(bno);
 	}
+
+	// 댓글 수정
+	@RequestMapping(value = "/modifyReply", method = RequestMethod.POST)
+	public String modifyReply(ReplyDTO replyDTO, MultipartHttpServletRequest mpRequest) throws Exception {
+		System.out.println(">>>>>>>>>modifyReply<<<<<<<<<<");
+		System.out.println(replyDTO);
+
+		boardService.modifyReply(replyDTO);
+
+		return "redirect:/projectHomePage";
+	}
 }

@@ -110,5 +110,8 @@ public interface BoardService {
 
 	// 게시물 고정 검색
 	public int boardFix_search(int bno) throws Exception;
+	
+	// 댓글 수정
+	public void modifyReply(ReplyDTO replyDTO) throws Exception;
 
 }

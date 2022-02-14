@@ -716,6 +716,17 @@ $(document).ready(function () {
     		}
    	 	});
     
+    	$('.modifyReplyForm').on('submit', function(){
+    		console.log($(this));
+    		let input_value = $(this).children('.modify_reply_content_input').val();
+    		console.log('modify_reply_content_input value ='+input_value);
+    		if(input_value == null || input_value == ''){
+    			$('.reply_null_error').css({ opacity: 0 }).animate({ opacity: 1 }, 1200);
+           	 $('.reply_null_error').css({ opacity: 1 }).animate({ opacity: 0 }, 700);
+    			return false;
+    		}
+   	 	});
+    
     // 프로젝트 색상 모달창에 현재 프로젝트 색상을 넘겨줌
     $("#projectColor, #dropdown_projectColor").click(function () {
         var color = $('#projectColor').val() + "✓";
@@ -2033,7 +2044,7 @@ body{
 											<div class="modify_reply_modal">
 											<form action="/modifyReply" class="modifyReplyForm" method="post" enctype="multipart/form-data">
                            						<input type="hidden" name="reply_no" value="${replyList.reply_no }">
-                           						<input type="text" name="modify_reply_content" class="modify_reply_content_input" placeholder="입력은 Enter 입니다.">
+                           						<input type="text" name="reply_content" class="modify_reply_content_input" value="${replyList.reply_content }" placeholder="입력은 Enter 입니다.">
                         					</form>
                         					</div>
 										</c:if>
@@ -2151,8 +2162,7 @@ body{
             <c:forEach begin="${pagination.firstPage}"
                 end="${pagination.lastPage}" var="idx">
              <li class="page-item"> <a class="page-link" style="color:<c:out value="${pagination.currentPage == idx ? '#cc0000; font-weight:700; margin-bottom: 2px;' : ''}"/> "
-                href="javascript:void(0);" onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
-                value="${idx}" /></a>
+                href="javascript:void(0);" onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out value="${idx}" /></a>
             </c:forEach>
            <li class="page-item">  <a class="page-link" href="javascript:void(0);"
                 onclick="movePage(${pagination.currentPage}<c:if test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">

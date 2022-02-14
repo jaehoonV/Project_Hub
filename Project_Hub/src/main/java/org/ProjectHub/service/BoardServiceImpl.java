@@ -237,10 +237,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BookmarkDTO> searchBookmark_task(String email, String bname) throws Exception {
 		return boardMapper.searchBookmark_task(email, bname);
 	}
+
 	@Override
 	public List<BookmarkDTO> searchBookmark_text(String email, String bname) throws Exception {
 		return boardMapper.searchBookmark_text(email, bname);
 	}
+
 	@Override
 	public List<BookmarkDTO> searchBookmark_schedule(String email, String bname) throws Exception {
 		return boardMapper.searchBookmark_schedule(email, bname);
@@ -298,5 +300,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int boardFix_search(int bno) throws Exception {
 		return boardMapper.boardFix_search(bno);
+	}
+
+	// 댓글 수정
+	@Override
+	public void modifyReply(ReplyDTO replyDTO) throws Exception {
+		boardMapper.modifyReply(replyDTO);
+
 	}
 }
