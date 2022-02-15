@@ -148,7 +148,7 @@ label.error {
             class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
             <div class="col-lg-8 align-self-end">
                <h1 class="text-white font-weight-bold">
-                  우리가 함께 일하는 법!!,<br>Project Hub
+                  우리가 함께 일하는 법,<br>Project Hub 테스트
                </h1>
                <hr class="divider" />
             </div>
