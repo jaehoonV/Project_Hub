@@ -17,7 +17,7 @@
                 		
         
         <property name="java-output-path" value="target/classes"/>
-        <property name="context-root" value="controller"/>
+        <property name="context-root" value="project_hub_branch"/>
                 	
     
     </wb-module>
