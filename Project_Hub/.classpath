@@ -30,7 +30,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/yyeon/util/ojdbc8.jar">
+	<classpathentry kind="lib" path="C:/Users/lkj10/Downloads/sqldeveloper-21.2.1.204.1703-x64/sqldeveloper/jdbc/lib/ojdbc8.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
