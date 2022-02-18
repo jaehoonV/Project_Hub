@@ -1807,7 +1807,10 @@ body{
 								<div class="boardStatus">
 									<form action="/boardFix" method="post">
 									<input type="hidden" name="bno" value="${boardList.bno}">
-									<button type="submit" class="boardFix"><i class="fas fa-thumbtack fixIcon"></i></button>
+									<button type="submit" class="boardFix">
+										<c:if test="${boardList.bfix eq '0'}"><i class="fas fa-thumbtack fixIcon"></i></c:if>
+										<c:if test="${boardList.bfix eq '1'}"><i class="fas fa-thumbtack fixIcon" style="color:#6449fc;"></i></c:if>
+									</button>
 									</form>
 									<c:if test="${boardList.bwriter_email eq memberInfo.email || projectMemberInfo.pmadmin_num eq 1}">
 									<div class="dropdown d-inline">
