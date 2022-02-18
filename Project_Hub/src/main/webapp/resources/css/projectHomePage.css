@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.fixIcon:hover{
+	color:#6449fc;
+}
+
 .modify_reply_modal{
 	position: absolute;
     display: none;
