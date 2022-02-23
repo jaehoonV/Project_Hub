@@ -152,6 +152,9 @@ public class ProjectController {
 		// 모델에 고정 게시물  정보 set
 		model.addAttribute("boardListFixed", boardService.boardListFixed(pno));
 		
+		// 모델에 업무 게시물 수 set
+		model.addAttribute("taskReport_number", boardService.taskReport_number(pno));
+		
 		// 게시물 개수
 		int boardListCnt = boardService.boardListCnt(pno);
 

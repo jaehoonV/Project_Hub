@@ -30,14 +30,54 @@
 <!-- 지도 api -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fea17d9b713a1da00c584f2f93c5426&libraries=services"></script>
 <!-- 폰트어썸 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
 <!-- jQuery.validate 플러그인 삽입 -->
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<!-- chart.js cdn -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
 
+$(function(){
+	/* task_report_chart */
+	const chart_data = {
+	    labels: ['요청', '진행', '완료', '보류'],
+	    datasets: [{
+	        label: '업무상태',
+	        data: [2, 8, 5, 1],
+	        backgroundColor: [
+	            '#00b2ff',
+	            '#00b01c',
+	            '#402a9d',
+	            '#777'
+	        ],
+	        hoverOffset: 5
+	    }]
+	};
+	const chart_config = {
+	    type: 'doughnut',
+	    data: chart_data,
+	};
+	const chart = new Chart(document.getElementById('task_report_chart'), chart_config);
+	/* task_report_chart end */
+});
+
+/* 업무 리포트 */
+$(function () {
+	$('.taskReport_title').click(function(){
+		console.log("taskReport_title click!");
+		var display = $('.taskReport_content').css('display');
+		if(display == 'none'){
+			$('.taskReport_content').css('display','block');
+			$('.fa-angle-down').remove();
+			$('#taskReport_toggle').append('<i class="fa-solid fa-angle-up"></i>');
+		}else{
+			$('.taskReport_content').css('display','none');
+			$('.fa-angle-up').remove();
+			$('#taskReport_toggle').append('<i class="fa-solid fa-angle-down"></i>');
+		}
+	});
+});
 /* 게시글 고정 취소 */
 $(function () {
     $('.fix_cancel').on('click',function () {
@@ -1676,6 +1716,22 @@ body{
 			<div class="main-content">
 			<div class="main-content-area-wrap">
 				<div id="mainBox">
+					<div id="taskReportArea">
+						<div id="taskReport-section">
+							<div class="taskReport_title">
+								<span id="taskReport_title_span">업무리포트</span>
+								<span id="taskReport_number">${taskReport_number}</span>
+								<button id="taskReport_toggle"><i class="fa-solid fa-angle-up"></i></button>
+							</div>
+							<div class="taskReport_content">
+								<div class="task_report">
+									<div class="task_report_doughnut">
+        								<canvas id="task_report_chart"></canvas>
+    								</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div id="writeBox">
 						<div class="writeBoxHeader">
 							<div class="write" data-toggle="modal" data-target="#writeText">

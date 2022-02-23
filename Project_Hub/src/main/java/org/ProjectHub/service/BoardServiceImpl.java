@@ -306,6 +306,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modifyReply(ReplyDTO replyDTO) throws Exception {
 		boardMapper.modifyReply(replyDTO);
-
+	}
+	
+	// 업무 게시물 수
+	@Override
+	public int taskReport_number(int pno) throws Exception {
+		return boardMapper.taskReport_number(pno);
 	}
 }

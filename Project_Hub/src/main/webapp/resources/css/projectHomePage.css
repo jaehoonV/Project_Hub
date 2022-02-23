@@ -1,5 +1,76 @@
 @charset "UTF-8";
 
+.task_report_doughnut {
+    width: 195px;
+    height: 200px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-left: 30px;
+    display: inline-block;
+    float: left;
+}
+
+#taskReport_number{
+    font-size: 17px;
+    font-weight: 700;
+    color: #999;
+}
+
+.taskReport_content{
+	height: auto;
+    padding: 5px 0 20px;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    display: flex;
+    position: relative;
+    background: #fff;
+    align-items: center;
+}
+
+#taskReport_toggle{
+	all: unset;
+	cursor: pointer;
+	font-family: inherit;
+    font-size: 100%;
+    line-height: normal;
+    color: #333;
+	margin-left: auto;
+}
+
+#taskReport_title_span{
+	font-size: 15px;
+    font-weight: 800;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.taskReport_title{
+	height: 40px;
+    background: #fff;
+    padding: 0 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    float: left;
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-flow: row nowrap;
+}
+
+#taskReport-section{
+	display: grid;
+	position: relative;
+    margin: 0 0 15px 0;
+    border: solid 1px #ddd;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 15px rgb(0 0 0 / 4%);
+}
+
 .fixIcon:hover{
 	color:#6449fc;
 }

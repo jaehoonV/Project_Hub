@@ -384,5 +384,11 @@
 		update reply set reply_content = #{reply_content} where
 		reply_no = #{reply_no}
 	</update>
-
+	
+	<!-- 게시물 고정 카운트 -->
+	<select id="taskReport_number" resultType="int">
+		select count(*) from board
+		where pno= #{pno} and bidentifier = 2
+	</select>
+	
 </mapper>
