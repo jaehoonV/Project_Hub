@@ -1,5 +1,6 @@
 package org.ProjectHub.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -310,7 +311,20 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 업무 게시물 수
 	@Override
-	public int taskReport_number(int pno) throws Exception {
-		return boardMapper.taskReport_number(pno);
+	public List<Integer> taskReport_number(int pno) throws Exception {
+		List<Integer> taskReport_number_list = new ArrayList<>();
+		int all = boardMapper.taskReport_number_all(pno);
+		int request = boardMapper.taskReport_number_request(pno);
+		int progress = boardMapper.taskReport_number_progress(pno);
+		int complete = boardMapper.taskReport_number_complete(pno);
+		int hold = boardMapper.taskReport_number_hold(pno);
+		
+		taskReport_number_list.add(all);
+		taskReport_number_list.add(request);
+		taskReport_number_list.add(progress);
+		taskReport_number_list.add(complete);
+		taskReport_number_list.add(hold);
+		
+		return taskReport_number_list;
 	}
 }

@@ -38,13 +38,25 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
 
+/* 업무 리포트 차트, 퍼센트 */
 $(function(){
+	var all_num = ${taskReport_number[0]};
+	var request_num = ${taskReport_number[1]};
+	var progress_num = ${taskReport_number[2]};
+	var complete_num = ${taskReport_number[3]};
+	var hold_num = ${taskReport_number[4]};
+	
+	$('.task_report_request_percent').html(Math.floor(request_num/all_num*100));
+	$('.task_report_progress_percent').text(Math.floor(progress_num/all_num*100));
+	$('.task_report_complete_percent').text(Math.floor(complete_num/all_num*100));
+	$('.task_report_hold_percent').text(Math.floor(hold_num/all_num*100));
+	
 	/* task_report_chart */
 	const chart_data = {
 	    labels: ['요청', '진행', '완료', '보류'],
 	    datasets: [{
 	        label: '업무상태',
-	        data: [2, 8, 5, 1],
+	        data: [request_num, progress_num, complete_num, hold_num],
 	        backgroundColor: [
 	            '#00b2ff',
 	            '#00b01c',
@@ -57,8 +69,9 @@ $(function(){
 	const chart_config = {
 	    type: 'doughnut',
 	    data: chart_data,
+	    
 	};
-	const chart = new Chart(document.getElementById('task_report_chart'), chart_config);
+	const chart = new Chart($('#task_report_chart'), chart_config);
 	/* task_report_chart end */
 });
 
@@ -68,16 +81,17 @@ $(function () {
 		console.log("taskReport_title click!");
 		var display = $('.taskReport_content').css('display');
 		if(display == 'none'){
-			$('.taskReport_content').css('display','block');
+			$('.taskReport_content').slideDown();
 			$('.fa-angle-down').remove();
 			$('#taskReport_toggle').append('<i class="fa-solid fa-angle-up"></i>');
 		}else{
-			$('.taskReport_content').css('display','none');
+			$('.taskReport_content').slideUp();
 			$('.fa-angle-up').remove();
 			$('#taskReport_toggle').append('<i class="fa-solid fa-angle-down"></i>');
 		}
 	});
 });
+
 /* 게시글 고정 취소 */
 $(function () {
     $('.fix_cancel').on('click',function () {
@@ -1720,7 +1734,7 @@ body{
 						<div id="taskReport-section">
 							<div class="taskReport_title">
 								<span id="taskReport_title_span">업무리포트</span>
-								<span id="taskReport_number">${taskReport_number}</span>
+								<span id="taskReport_number">${taskReport_number[0]}</span>
 								<button id="taskReport_toggle"><i class="fa-solid fa-angle-up"></i></button>
 							</div>
 							<div class="taskReport_content">
@@ -1728,6 +1742,46 @@ body{
 									<div class="task_report_doughnut">
         								<canvas id="task_report_chart"></canvas>
     								</div>
+								</div>
+								<div class="task_report_list">
+									<ul id="task_report_list_ul">
+										<li>
+											<span class="task_report_request">
+												<i class="fa-solid fa-circle fa-xs"></i>
+												<span class="task_report_text">요청
+													<em>${taskReport_number[1]}</em>
+												</span>
+												<span class="task_report_request_percent"></span>
+												<span class="request_percent">%</span>
+											</span>
+											<span class="task_report_progress">
+												<i class="fa-solid fa-circle fa-xs"></i>
+												<span class="task_report_text">진행
+													<em>${taskReport_number[2]}</em>
+												</span>
+												<span class="task_report_progress_percent"></span>
+												<span class="progress_percent">%</span>
+											</span>
+										</li>
+										<li>
+											<span class="task_report_complete">
+												<i class="fa-solid fa-circle fa-xs"></i>
+												<span class="task_report_text">완료
+													<em>${taskReport_number[3]}</em>
+												</span>
+												<span class="task_report_complete_percent"></span>
+												<span class="complete_percent">%</span>
+											</span>
+											<span class="task_report_hold">
+												<i class="fa-solid fa-circle fa-xs"></i>
+												<span class="task_report_text">보류
+													<em>${taskReport_number[4]}</em>
+												</span>
+												<span class="task_report_hold_percent"></span>
+												<span class="hold_percent">%</span>
+											</span>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>

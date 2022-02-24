@@ -115,6 +115,6 @@ public interface BoardService {
 	public void modifyReply(ReplyDTO replyDTO) throws Exception;
 	
 	// 업무 게시물 수
-	public int taskReport_number(int pno) throws Exception;
+	public List<Integer> taskReport_number(int pno) throws Exception;
 
 }

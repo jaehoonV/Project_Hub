@@ -1,5 +1,76 @@
 @charset "UTF-8";
 
+.task_report_text>em{
+	font-size: 16px;
+    font-weight: 700;
+    margin-left: 2px;
+    font-style: normal;
+}
+
+.task_report_text{
+	color: #555;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.task_report_request{
+	display: inline-block;
+    min-width: 180px;
+    padding: 3px 0;
+	
+}
+
+.task_report_request>.fa-circle, .task_report_request>.task_report_request_percent, .task_report_request>.request_percent{
+	color: #00b2ff;
+	font-weight: 600;
+}
+
+.task_report_progress{
+	display: inline-block;
+    min-width: 180px;
+    padding: 3px 0;
+}
+
+.task_report_progress>.fa-circle, .task_report_progress>.task_report_progress_percent, .task_report_progress>.progress_percent{
+	color: #00b01c;
+	font-weight: 600;
+}
+
+.task_report_complete{
+	display: inline-block;
+    min-width: 180px;
+    padding: 3px 0;
+}
+
+.task_report_complete>.fa-circle, .task_report_complete>.task_report_complete_percent, .task_report_complete>.complete_percent{
+	color: #402a9d;
+	font-weight: 600;
+}
+
+.task_report_hold{
+	display: inline-block;
+    min-width: 180px;
+    padding: 3px 0;
+}
+
+.task_report_hold>.fa-circle, .task_report_hold>.task_report_hold_percent, .task_report_hold>.hold_percent{
+	color: #777;
+	font-weight: 600;
+}
+
+#task_report_list_ul{
+	margin-left: 60px;
+}
+
+.task_report_percent{
+	font-size: 17px;
+}
+
+.task_report_text{
+	margin: 0 3px;
+}
+
 .task_report_doughnut {
     width: 195px;
     height: 200px;

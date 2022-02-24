@@ -385,10 +385,38 @@
 		reply_no = #{reply_no}
 	</update>
 	
-	<!-- 게시물 고정 카운트 -->
-	<select id="taskReport_number" resultType="int">
+	<!-- 업무 게시물 수(all) -->
+	<select id="taskReport_number_all" resultType="int">
 		select count(*) from board
 		where pno= #{pno} and bidentifier = 2
+	</select>
+	
+	<!-- 게시물 고정 카운트 -->
+	<select id="taskReport_number_request" resultType="int">
+		select count(*) from board b, task t
+		where b.pno= #{pno} and b.bidentifier = 2
+		and b.bno = t.bno and t.task_status = 1
+	</select>
+	
+	<!-- 게시물 고정 카운트 -->
+	<select id="taskReport_number_progress" resultType="int">
+		select count(*) from board b, task t
+		where b.pno= #{pno} and b.bidentifier = 2
+		and b.bno = t.bno and t.task_status = 2
+	</select>
+	
+	<!-- 게시물 고정 카운트 -->
+	<select id="taskReport_number_complete" resultType="int">
+		select count(*) from board b, task t
+		where b.pno= #{pno} and b.bidentifier = 2
+		and b.bno = t.bno and t.task_status = 3
+	</select>
+	
+	<!-- 게시물 고정 카운트 -->
+	<select id="taskReport_number_hold" resultType="int">
+		select count(*) from board b, task t
+		where b.pno= #{pno} and b.bidentifier = 2
+		and b.bno = t.bno and t.task_status = 4
 	</select>
 	
 </mapper>

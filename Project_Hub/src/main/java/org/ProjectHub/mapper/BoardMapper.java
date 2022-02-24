@@ -106,7 +106,9 @@ public interface BoardMapper {
 
 	// 북마크 리스트
 	public List<BookmarkDTO> searchBookmark_task(String email, String bname) throws Exception;
+
 	public List<BookmarkDTO> searchBookmark_text(String email, String bname) throws Exception;
+
 	public List<BookmarkDTO> searchBookmark_schedule(String email, String bname) throws Exception;
 
 	// 북마크 취소
@@ -135,10 +137,22 @@ public interface BoardMapper {
 
 	// 게시물 고정 검색
 	public int boardFix_search(int bno) throws Exception;
-	
+
 	// 댓글 수정
 	public void modifyReply(ReplyDTO replyDTO) throws Exception;
-	
-	// 업무 게시물 수
-	public int taskReport_number(int pno) throws Exception;
+
+	// 업무 게시물 수(all)
+	public int taskReport_number_all(int pno) throws Exception;
+
+	// 업무 게시물 수(요청)
+	public int taskReport_number_request(int pno) throws Exception;
+
+	// 업무 게시물 수(진행)
+	public int taskReport_number_progress(int pno) throws Exception;
+
+	// 업무 게시물 수(완료)
+	public int taskReport_number_complete(int pno) throws Exception;
+
+	// 업무 게시물 수(보류)
+	public int taskReport_number_hold(int pno) throws Exception;
 }
