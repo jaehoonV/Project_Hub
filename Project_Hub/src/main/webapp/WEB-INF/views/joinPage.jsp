@@ -38,7 +38,7 @@
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
 		$('#joinForm').validate({
 			rules : {
 				email : {
@@ -50,7 +50,7 @@
 						type : "post",
 						data : {
 							email : function() {
-								return $(".email_input").val();
+							return $('#email').val();
 							}
 						}
 					}
@@ -133,7 +133,7 @@ label.error {
 							<div class="col-lg-8 col-xl-6 text-center">
 								<div class="card shadow-lg border-0 rounded-lg mt-5">
 									<div class="card-header">
-										<h3 class="text-center font-weight-light my-4">Register</h3>
+										<h3 class="text-center font-weight-light my-4">회원가입</h3>
 									</div>
 									<div class="card-body">
 										<form action="/join" method="post" id="joinForm">
@@ -155,7 +155,7 @@ label.error {
 											</div>
 											<div class="d-grid">
 												<button class="btn btn-primary btn-xl" id="Button"
-											type="submit">Register</button>
+											type="submit">회원가입</button>
 											</div>
 										</form>
 									</div>

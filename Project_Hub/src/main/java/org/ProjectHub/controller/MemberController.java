@@ -60,7 +60,7 @@ public class MemberController {
 	@ResponseBody
 	public boolean userEmailChk(String email) throws Exception {
 
-		// System.out.println("userEmailChk() 진입");
+		System.out.println("userEmailChk() 진입 / email =" + email);
 
 		// emailCheck 중복 이메일 존재하면 1 반환
 		int result = memberService.emailCheck(email);

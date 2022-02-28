@@ -130,7 +130,7 @@ label.error {
 							<div class="col-lg-8 col-xl-6 text-center">
 								<div class="card shadow-lg border-0 rounded-lg mt-5">
 									<div class="card-header">
-										<h3 class="text-center font-weight-light my-4">Login</h3>
+										<h3 class="text-center font-weight-light my-4">로그인</h3>
 									</div>
 									<div class="card-body">
 										<form action="/login" method="post" id="loginForm">
@@ -150,7 +150,7 @@ label.error {
 											
 											<div class="d-grid">
 												<button class="btn btn-primary btn-xl" type="button"
-													id="loginCheck">Login</button>
+													id="loginCheck">로그인</button>
 											</div>
 										</form>
 									</div>

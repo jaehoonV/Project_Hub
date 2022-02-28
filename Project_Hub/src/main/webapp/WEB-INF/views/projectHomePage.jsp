@@ -69,10 +69,18 @@ $(function(){
 	const chart_config = {
 	    type: 'doughnut',
 	    data: chart_data,
-	    
+	    options: {
+	        plugins: {
+	            legend: {
+	                position: 'right'
+	                
+	            }
+	        }
+	    }
 	};
 	const chart = new Chart($('#task_report_chart'), chart_config);
 	/* task_report_chart end */
+	
 });
 
 /* 업무 리포트 */
@@ -1745,7 +1753,7 @@ body{
 								</div>
 								<div class="task_report_list">
 									<ul id="task_report_list_ul">
-										<li>
+										<li style="margin-bottom: 16px;">
 											<span class="task_report_request">
 												<i class="fa-solid fa-circle fa-xs"></i>
 												<span class="task_report_text">요청
