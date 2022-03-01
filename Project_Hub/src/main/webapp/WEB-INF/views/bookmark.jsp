@@ -521,7 +521,7 @@ a:hover, a:active, a:link, a:visited {
 		</div>
       
 		<div class="modal fade" id="myProfile">
-			<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-dialog modal-dialog-centered myProfile_modal">
 				<div class="modal-content">
 					<!-- Modal Header -->
 					<div class="modal-header" id="profilemodal-header">
@@ -538,11 +538,11 @@ a:hover, a:active, a:link, a:visited {
 					<!-- Modal body -->
 					<div class="modal-body" id="profilemodal-body">
 						<div class="contact">
-							<ul class="contact-contents">
-								<li><i class="far fa-user"></i><span id="username">${memberInfo.name }</span></li>
-								<li><i class="far fa-envelope"></i><span id="useremail">${memberInfo.email }</span></li>
-								<li><i class="fas fa-mobile-alt"></i><span id="userPhone">${memberInfo.phone_num }</span></li>
-								<li><i class="fas fa-phone"></i><span id="userCall">${memberInfo.tel_num }</span></li>
+							<ul class="contact-contents profile_ul">
+								<li id="profile_li"><span id="profile_li_icon"><i class="far fa-user"></i></span><span id="username">${memberInfo.name }</span></li>
+								<li id="profile_li"><span id="profile_li_icon"><i class="far fa-envelope"></i></span><span id="useremail">${memberInfo.email }</span></li>
+								<li id="profile_li"><span id="profile_li_icon"><i class="fas fa-mobile-alt"></i></span><span id="userPhone">${memberInfo.phone_num }</span></li>
+								<li id="profile_li"><span id="profile_li_icon"><i class="fas fa-phone"></i></span><span id="userCall">${memberInfo.tel_num }</span></li>
 							</ul>
 						</div>
 					</div>
@@ -563,7 +563,7 @@ a:hover, a:active, a:link, a:visited {
 					<!-- Modal Header -->
 					<div class="modal-header" id="settingmodal-header">
 						<h6 class="settingmodal-title">
-							<b>환경설정</b>
+							<b>계정설정</b>
 						</h6>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>

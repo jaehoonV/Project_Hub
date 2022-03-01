@@ -1,5 +1,41 @@
 @charset "UTF-8";
 
+.profile_ul{
+	padding-left: 0;
+}
+
+.myProfile_modal{
+	max-width: 410px !important;
+}
+
+#profile_li{
+	display: flex;
+}
+
+#profile_li_icon{
+	width: 40px;
+    text-align: center;
+}
+
+#profile_li>span{
+	margin-left: 10px;
+}
+
+#change_name-error{
+	left: 430px;
+    top: 158px;
+}
+
+#change_phone_num-error{
+	top: 325px;
+    left: 430px;
+}
+
+#change_tel_num-error{
+	top: 380px;
+	left: 430px;
+}
+
 #bookmark_link{
 	all: unset;
 }
@@ -700,10 +736,6 @@ label.error {
 	float: left;
 	color: #555;
 	font-weight: 400;
-}
-
-.my-right-list-2 .error {
-   left: 500px;
 }
 
 #passwordArea div {

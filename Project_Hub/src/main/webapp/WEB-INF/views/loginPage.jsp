@@ -77,26 +77,23 @@
 			rules : {
 				email : {
 					required : true
-				},
+					},
 				password : {
 					required : true
-				}
-			},
+					}
+				},
 			messages : {
 				email : {
 					required : "이메일을 입력해 주세요."
-				},
+					},
 				password : {
 					required : "비밀번호를 입력해 주세요."
-				}
-			},
+					}
+				},
 			submitHandler : function() { //유효성 검사를 통과시 전송
 				loginForm.submit();
-			},
-			success : function(e) {
-				//
-			}
-		});//end validate()
+				},
+			});//end validate()
 	});
 </script>
 <!-- form validation 에러시 css -->
