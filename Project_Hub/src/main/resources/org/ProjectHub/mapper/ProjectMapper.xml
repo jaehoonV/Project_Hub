@@ -17,7 +17,7 @@
 		</selectKey>
 	</insert>
 
-	<!-- 프로젝트 회원 등록 -->
+	<!-- 프로젝트 생성 - 회원 등록 -->
 	<insert id="memberRegister">
 		insert into project_member(pmseq, pmadmin_num,
 		pmcolor, pmfavorite,

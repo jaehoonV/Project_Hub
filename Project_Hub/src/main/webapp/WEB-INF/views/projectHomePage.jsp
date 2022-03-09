@@ -1745,14 +1745,18 @@ body{
 								<span id="taskReport_number">${taskReport_number[0]}</span>
 								<button id="taskReport_toggle"><i class="fa-solid fa-angle-up"></i></button>
 							</div>
+							
 							<div class="taskReport_content">
 								<div class="task_report">
+									<c:if test="${taskReport_number[0] ne '0'}">
 									<div class="task_report_doughnut">
         								<canvas id="task_report_chart"></canvas>
     								</div>
+    								</c:if>
 								</div>
 								<div class="task_report_list">
 									<ul id="task_report_list_ul">
+									<c:if test="${taskReport_number[0] ne '0'}">
 										<li style="margin-bottom: 16px;">
 											<span class="task_report_request">
 												<i class="fa-solid fa-circle fa-xs"></i>
@@ -1789,6 +1793,7 @@ body{
 												<span class="hold_percent">%</span>
 											</span>
 										</li>
+										</c:if>
 									</ul>
 								</div>
 							</div>
