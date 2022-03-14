@@ -102,17 +102,12 @@ public class ProjectServiceImpl implements ProjectService {
 		projectMapper.deleteProject(pno);
 	}
 
-	// 프로젝트 제목 수정
+	// 프로젝트 수정
 	@Override
-	public void modifyPname(String prevPname, String pname) throws Exception {
-		projectMapper.modifyPname(prevPname, pname);
+	public void modifyProject(int pno, String pname, String pdescription) throws Exception {
+		projectMapper.modifyProject(pno, pname, pdescription);
 	}
 
-	// 프로젝트 설명 수정
-	@Override
-	public void modifyPdescription(String prevPdescription, String pdescription) throws Exception {
-		projectMapper.modifyPdescription(prevPdescription, pdescription);
-	}
 
 	// 프로젝트 초대
 	@Override
@@ -122,13 +117,6 @@ public class ProjectServiceImpl implements ProjectService {
 		// 메일 발송
 		MailHandler sendMail = new MailHandler(mailSender);
 		for (String email : emailarr) {
-			// DB에 프로젝트 멤버 저장
-			/* projectMapper.project_member_register(email,pno); */
-
-			// 인증키 생성
-			String key = new TempKey().getKey(10, false);
-			/* projectMapper.createP_Authkey(email, key); */
-
 			sendMail.setSubject(MimeUtility.encodeText("[Project Hub 프로젝트 초대 메일입니다.]", "UTF-8", "B"));
 			sendMail.setText(new StringBuffer().append("<h1><strong>").append("우리가 함께 일하는 법, Project Hub</strong></h1>")
 					.append("<h2><strong>").append("프로젝트 초대</strong></h2>")

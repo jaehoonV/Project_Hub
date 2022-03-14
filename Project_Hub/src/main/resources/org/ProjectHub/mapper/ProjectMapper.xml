@@ -97,16 +97,10 @@
 		
 	</delete>
 
-	<!-- 프로젝트 제목 수정 -->
-	<update id="modifyPname">
-		update project set pname = #{param2} where pname =
-		#{param1}
-	</update>
-
-	<!-- 프로젝트 설명 수정 -->
-	<update id="modifyPdescription">
-		update project set pdescription = #{param2} where
-		pdescription = #{param1}
+	<!-- 프로젝트 수정 -->
+	<update id="modifyProject">
+		update project set pname = #{param2}, pdescription = #{param3} 
+		where pno = #{param1}
 	</update>
 
 	<!-- 프로젝트 초대 - 등록 -->

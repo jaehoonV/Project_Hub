@@ -46,10 +46,7 @@ public interface ProjectMapper {
 	public void deleteProject(int pno) throws Exception;
 
 	// 프로젝트 수정
-	public void modifyPname(String prevPname, String pname) throws Exception;
-
-	// 프로젝트 수정
-	public void modifyPdescription(String prevPdescription, String pdescription) throws Exception;
+	public void modifyProject(int pno, String pname, String pdescription) throws Exception;
 
 	// 프로젝트 초대 - project_member DB에 프로젝트 멤버 저장
 	public void project_member_register(String email, int pno) throws Exception;

@@ -492,9 +492,7 @@ $(document).ready(function () {
 	
 	var email_item = 5; 
     $(".append_input_email").click(function () {
-    	
         $(".input_email_list").append('<div class="input_email append_input_email_item"><input type="text" class="emailItemInput" id="inputEmail'+(++email_item)+'" placeholder="example@projectHub.com" data-valid="email" maxlength="50" ></div>');
-
     });
     
     $(function () {
@@ -512,17 +510,12 @@ $(document).ready(function () {
             	temp++;
             	}
             }
-            console.log(emailarr);
-            console.log(pno);
-            console.log(pname);
-            console.log(name);
             var objParams = {
             	"pno" : pno, //pno 저장
             	"pname" : pname, //pname 저장    
             	"name" : name, //pname 저장    
                 "emailarr" : emailarr, //이메일 저장
             };
-        
         	$.ajax({
             	type: "POST",
              	url: "/inviteProject",   //데이터를 주고받을 파일 주소
@@ -2556,16 +2549,14 @@ body{
 					<form action="/modifyProject" method="post" id="modifyProjectForm">
 						<!-- Project name input-->
 						<div class="form-project">
-							<input style="display: none;" name="prevPname"
-								value="${projectInfo.pname }"> <input
+							<input
 								class="projectTitleInput modifyPname" id="pname" type="text"
 								name="pname" value="${projectInfo.pname }" placeholder="제목을 입력하세요" />
 						</div>
 						<br>
 						<!-- Project description  input-->
 						<div class="form-project">
-							<input style="display: none;" name="prevPdescription"
-								value="${projectInfo.pdescription }"> <textarea
+							<textarea
 								class="projectContentsInput modifyPdescription" id="pdescription"
 								name="pdescription"
 								placeholder="프로젝트에 관한 설명(옵션)">${projectInfo.pdescription}</textarea> <br>

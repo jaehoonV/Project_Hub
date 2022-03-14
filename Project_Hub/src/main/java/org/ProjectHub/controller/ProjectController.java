@@ -145,16 +145,16 @@ public class ProjectController {
 
 		// 모델에 프로젝트 회원수 정보 set
 		model.addAttribute("projectMemberCount", projectService.projectMemberCount(pno));
-		
+
 		// 모델에 게시물 고정 카운트 set
 		model.addAttribute("boardFixCount", boardService.boardFixCount(pno));
-		
-		// 모델에 고정 게시물  정보 set
+
+		// 모델에 고정 게시물 정보 set
 		model.addAttribute("boardListFixed", boardService.boardListFixed(pno));
-		
+
 		// 모델에 업무 게시물 수 set
 		model.addAttribute("taskReport_number", boardService.taskReport_number(pno));
-		
+
 		// 게시물 개수
 		int boardListCnt = boardService.boardListCnt(pno);
 
@@ -279,16 +279,15 @@ public class ProjectController {
 
 	// 프로젝트 수정
 	@RequestMapping(value = "/modifyProject", method = RequestMethod.POST)
-	public String modifyProject(@RequestParam("prevPname") String prevPname, @RequestParam("pname") String pname,
-			@RequestParam("prevPdescription") String prevPdescription,
-			@RequestParam("pdescription") String pdescription) throws Exception {
+	public String modifyProject(@RequestParam("pname") String pname, @RequestParam("pdescription") String pdescription,
+			HttpServletRequest request) throws Exception {
 		System.out.println(">>>>>>>>>>>>>>>modifyProject<<<<<<<<<<<");
-
+		// 세션 생성
+		HttpSession session = request.getSession();
+		// pno 세션에서 가져옴
+		int pno = (int) session.getAttribute("pno");
 		// 프로젝트 제목 수정
-		projectService.modifyPname(prevPname, pname);
-
-		// 프로젝트 설명 수정
-		projectService.modifyPdescription(prevPdescription, pdescription);
+		projectService.modifyProject(pno, pname, pdescription);
 
 		return "redirect:/projectHomePage";
 	}
