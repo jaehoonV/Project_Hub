@@ -32,15 +32,12 @@ public class BoardServiceImpl implements BoardService {
 	// 게시물 작성, 글 작성
 	@Override
 	public void writeText(BoardDTO boardDTO, TextDTO textDTO, MultipartHttpServletRequest mpRequest) throws Exception {
-
 		// 게시물 작성
 		boardMapper.writeBoard(boardDTO);
 		// mybatis에서 selectKey로 가져온 bno값 textDTO에 set
 		textDTO.setBno(boardDTO.getBno());
-
 		// 글 작성
 		boardMapper.writeText(textDTO);
-
 		// 파일 업로드
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDTO, mpRequest);
 		int size = list.size();
@@ -56,10 +53,8 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.writeBoard(boardDTO);
 		// mybatis에서 selectKey로 가져온 bno값 taskDTO에 set
 		taskDTO.setBno(boardDTO.getBno());
-
-		// 글 작성
+		// 업무 작성
 		boardMapper.writeTask(taskDTO);
-
 		// 파일 업로드
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardDTO, mpRequest);
 		int size = list.size();
@@ -76,7 +71,7 @@ public class BoardServiceImpl implements BoardService {
 		// mybatis에서 selectKey로 가져온 bno값 scheduleDTO에 set
 		scheduleDTO.setBno(boardDTO.getBno());
 
-		// 글 작성
+		// 일정 작성
 		boardMapper.writeSchedule(scheduleDTO);
 	}
 

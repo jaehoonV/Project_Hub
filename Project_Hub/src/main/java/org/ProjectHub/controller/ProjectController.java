@@ -339,9 +339,6 @@ public class ProjectController {
 	public void start_project(HttpServletRequest request, @RequestParam("email") String email,
 			@RequestParam("password") String password, @RequestParam("pno") int pno, HttpServletResponse response)
 			throws Exception {
-		System.out.println("email >>>>> " + email);
-		System.out.println("password >>>>> " + password);
-		System.out.println("pno >>>>> " + pno);
 		// 세션 생성
 		HttpSession session = request.getSession();
 

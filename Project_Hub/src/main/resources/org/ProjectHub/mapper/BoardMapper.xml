@@ -225,7 +225,7 @@
 		#{bno}
 	</update>
 
-	<!-- 게시글 파일 업로드 -->
+	<!-- 게시물 파일 업로드 -->
 	<insert id="insertBfile">
 		insert into board_file (bfile_no, org_bfile_name,
 		stored_bfile_name,
@@ -235,7 +235,7 @@
 	</insert>
 
 
-	<!-- 게시글 파일 조회 -->
+	<!-- 게시물 파일 조회 -->
 	<select id="bfileList"
 		resultType="org.ProjectHub.domain.BfileDTO">
 		select bfile_no, stored_bfile_name, org_bfile_name,
@@ -245,14 +245,14 @@
 		#{bno} and del_gb = 'N' order by bfile_no
 	</select>
 
-	<!-- 게시글파일 다운 -->
+	<!-- 게시물 파일 다운 -->
 	<select id="bfileDown" resultType="hashMap">
 		select stored_bfile_name,
 		org_bfile_name from board_file
 		where bfile_no = #{bfile_no}
 	</select>
 
-	<!-- 게시글 파일 수정/삭제 -->
+	<!-- 게시물 파일 수정/삭제 -->
 	<update id="updateBfile">
 		update board_file set bel_gb = 'Y' where bfile_no =
 		#{bfile_no}
