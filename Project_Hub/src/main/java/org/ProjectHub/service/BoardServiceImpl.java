@@ -70,7 +70,6 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.writeBoard(boardDTO);
 		// mybatis에서 selectKey로 가져온 bno값 scheduleDTO에 set
 		scheduleDTO.setBno(boardDTO.getBno());
-
 		// 일정 작성
 		boardMapper.writeSchedule(scheduleDTO);
 	}

@@ -717,6 +717,9 @@ $(document).ready(function () {
             },
             schedule_content: {
                 required: true
+            },
+            schedule_location:{
+            	required: true
             }
         },
         messages: {
@@ -725,6 +728,9 @@ $(document).ready(function () {
             },
             schedule_content: {
                 required: "내용을 입력해 주세요."
+            },
+            schedule_location:{
+            	required: "장소를 입력해 주세요."
             }
         },
         submitHandler: function () { //유효성 검사를 통과시 전송
@@ -1122,7 +1128,6 @@ function execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var addr = ''; // 주소 변수
@@ -2488,7 +2493,7 @@ body{
 	<div class="modal fade" id="writeSchedule" tabindex="-1"
       aria-labelledby="writeScheduleLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
-         <div class="modal-content">
+         <div class="modal-content write_content">
             <div class="modal-header">
                <h5 class="modal-title" id="writeScheduleLabel"><strong>일정 작성</strong></h5>
                <button type="button" class="close" data-dismiss="modal"

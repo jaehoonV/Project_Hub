@@ -273,6 +273,11 @@
    top: 34px;
 }
 
+#schedule_location-error{
+	top: 342px;
+    left: 260px;
+}
+
 .bookmark_on{
    color: #6449fc !important;
 }
