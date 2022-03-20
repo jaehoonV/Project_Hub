@@ -204,42 +204,49 @@ public class BoardController {
 	public void boardLike(BoardLikeDTO boardLikeDTO, HttpServletResponse response, HttpServletRequest request, int bno)
 			throws Exception {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>boardLike<<<<<<<<<<<<<<<<");
-		System.out.println(bno);
-
 		// 세션 생성
 		HttpSession session = request.getSession();
 
 		String email = (String) session.getAttribute("email");
-
 		boardLikeDTO.setEmail(email);
 		boardLikeDTO.setBno(bno);
 
 		// 좋아요 이메일 체크
 		int lec = boardService.likeEmailCheck(boardLikeDTO);
-		if (lec == 1) {
-			// 좋아요 체크 확인
+		if (lec == 1) { // 좋아요 체크 확인
 			int lc = boardService.likeCheck(boardLikeDTO);
-			System.out.println("lc >> " + lc);
-
-			// 좋아요 체크 0일 시 체크 1로
-			if (lc == 0) {
+			if (lc == 0) { // 좋아요 체크 0일 시 체크 1로
 				boardService.likePlus(boardLikeDTO);
-			}
-			// 좋아요 체크 1일 시 체크 0으로
-			else if (lc == 1) {
+			} else if (lc == 1) { // 좋아요 체크 1일 시 체크 0으로
 				boardService.likeMinus(boardLikeDTO);
 			}
-		}
-		// 아예 없을 시 좋아요 테이블 만들기
-		else {
+		} else { // 아예 없을 시 좋아요 테이블 만들기
 			boardService.likeMake(boardLikeDTO);
 		}
-
 		// 좋아요 개수
 		int lct = boardService.likeCount(boardLikeDTO);
-		System.out.println("lct  >> " + lct);
 
 		response.getWriter().print(lct);
+	}
+
+	// 좋아요 체크
+	@ResponseBody
+	@RequestMapping(value = "/boardLikeCheck", method = RequestMethod.POST)
+	public void boardLikeCheck(Model model, BoardLikeDTO boardLikeDTO, HttpServletRequest request,
+			@RequestParam("bno") int bno, HttpServletResponse response) throws Exception {
+		System.out.println(" >>>>>>> boardLikeCheck - bno : " + bno);
+		// 세션 생성
+		HttpSession session = request.getSession();
+		// email 세션에서 가져옴
+		String email = (String) session.getAttribute("email");
+		boardLikeDTO.setEmail(email);
+		boardLikeDTO.setBno(bno);
+		int result = boardService.likeCheck(boardLikeDTO);
+		if (result == 1) {
+			response.getWriter().print(true);
+		} else {
+			response.getWriter().print(false);
+		}
 	}
 
 	// 북마크

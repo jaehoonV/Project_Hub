@@ -268,7 +268,7 @@ function favoriteButton(pno) {
 
 $(document).ready(function () {
 	
-	/* 북마크 게시글 표시 */
+	/* 북마크 게시물 표시 */
 	var len = $('.bookmarkBtn').length;
 	if(len > 0){
 		for(var i=0; i <len; i++){
@@ -282,6 +282,26 @@ $(document).ready(function () {
 	    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
 	    	        if(data == false){
 	    	        	$($('.bookmarkBtn')[i]).addClass('bookmark_on');
+	    	        }    
+	    	    }
+	    	});
+		}
+	}
+	
+	/* 좋아요 게시물 표시 */
+	var len = $('.boardLikeBtn').length;
+	if(len > 0){
+		for(var i=0; i <len; i++){
+			var bno = $($('.boardLikeBtn')[i]).attr('value');
+			$.ajax({
+	    		type: "POST",
+	    	    url: "/boardLikeCheck",   //데이터를 주고받을 파일 주소
+	    	    dataType: "json",
+	    	    data: "bno=" + bno,
+	    	    async: false,
+	    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+	    	        if(data == true){
+	    	        	$($('.boardLikeBtn')[i]).addClass('boardLike_on');
 	    	        }    
 	    	    }
 	    	});
@@ -1109,6 +1129,11 @@ $(document).ready(function () {
          $('.boardLikeBtn').click(function () {
         	 console.log('boardLikeBtn click');
          	var bno = $(this).val();
+         	if($(this).hasClass('boardLike_on')){
+        		$(this).removeClass('boardLike_on');
+        	}else{
+        		$(this).addClass('boardLike_on');
+        	}
          	  $.ajax({
          			url: "/boardLike",  
          			type: "GET",   

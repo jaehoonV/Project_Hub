@@ -278,6 +278,10 @@
     left: 260px;
 }
 
+.boardLike_on{
+   color: #6449fc !important;
+}
+
 .bookmark_on{
    color: #6449fc !important;
 }
