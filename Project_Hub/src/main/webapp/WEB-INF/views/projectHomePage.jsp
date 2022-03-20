@@ -11,7 +11,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>MainPage</title>
+<title>Project HomePage</title>
 <link href="/resources/css/projectHomePage.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -139,11 +139,11 @@ $(function () {
     	
     	$.ajax({
     		type: "POST",
-    	    url: "/clickBookmarkBtn",   //데이터를 주고받을 파일 주소
+    	    url: "/clickBookmarkBtn", 
     	    dataType: "json",
     	    data: "bno=" + bno,
     	    async: false,
-    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+    	    success: function (data) { 
     	        if(data == true){
     	        	console.log('북마크 등록!');
     	        }else{
@@ -275,11 +275,11 @@ $(document).ready(function () {
 			var bno = $($('.bookmarkBtn')[i]).attr('value');
 			$.ajax({
 	    		type: "POST",
-	    	    url: "/bookmarkCheck",   //데이터를 주고받을 파일 주소
+	    	    url: "/bookmarkCheck",  
 	    	    dataType: "json",
 	    	    data: "bno=" + bno,
 	    	    async: false,
-	    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+	    	    success: function (data) { 
 	    	        if(data == false){
 	    	        	$($('.bookmarkBtn')[i]).addClass('bookmark_on');
 	    	        }    
@@ -295,11 +295,11 @@ $(document).ready(function () {
 			var bno = $($('.boardLikeBtn')[i]).attr('value');
 			$.ajax({
 	    		type: "POST",
-	    	    url: "/boardLikeCheck",   //데이터를 주고받을 파일 주소
+	    	    url: "/boardLikeCheck", 
 	    	    dataType: "json",
 	    	    data: "bno=" + bno,
 	    	    async: false,
-	    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+	    	    success: function (data) { 
 	    	        if(data == true){
 	    	        	$($('.boardLikeBtn')[i]).addClass('boardLike_on');
 	    	        }    

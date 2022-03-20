@@ -329,6 +329,18 @@
 		#{param3}
 	</select>
 	
+	<!-- 북마크 취소 -->
+	<delete id="cancelBookmark">
+		delete from bookmark where email = #{param1} and pno
+		= #{param2} and bno = #{param3}
+	</delete>
+
+	<!-- 북마크 -->
+	<insert id="doBookmark">
+		insert into bookmark(bookmark_seq, pno, bno, email)
+		values(bm_seq.nextval, #{param2}, #{param3}, #{param1})
+	</insert>
+	
 	<!-- 북마크 리스트 -->
 	<select id="searchBookmark_task" resultType="org.ProjectHub.domain.BookmarkDTO">
 		select bm.pno, bt.pname, bm.bno, bm.email, bt.bidentifier, bt.bwriter, bt.title, bt.day 
@@ -345,18 +357,6 @@
 		from bookmark bm, board_schedule bs
 		where bm.bno = bs.bno and bm.email = #{param1} and title like '%'||#{param2}||'%'
 	</select>
-
-	<!-- 북마크 취소 -->
-	<delete id="cancelBookmark">
-		delete from bookmark where email = #{param1} and pno
-		= #{param2} and bno = #{param3}
-	</delete>
-
-	<!-- 북마크 -->
-	<insert id="doBookmark">
-		insert into bookmark(bookmark_seq, pno, bno, email)
-		values(bm_seq.nextval, #{param2}, #{param3}, #{param1})
-	</insert>
 
 	<!-- 게시물 고정 카운트 -->
 	<select id="boardFixCount" resultType="int">

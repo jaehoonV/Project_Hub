@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Invitation</title>
+<title>프로젝트 초대</title>
 <link href="/resources/css/invitation.css" rel="stylesheet" />
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -254,20 +254,15 @@ public class BoardController {
 	@RequestMapping(value = "/clickBookmarkBtn", method = RequestMethod.POST)
 	public void clickBookmarkBtn(Model model, HttpServletRequest request, @RequestParam("bno") int bno,
 			HttpServletResponse response) throws Exception {
-		System.out.println(" >>>>>>> clickBookmarkBtn <<<<<<<<<");
 		System.out.println(" >>>>>>> clickBookmarkBtn - bno : " + bno);
-
 		// 세션 생성
 		HttpSession session = request.getSession();
-
 		// email 세션에서 가져옴
 		String email = (String) session.getAttribute("email");
 		// pno 세션에서 가져옴
 		int pno = (int) session.getAttribute("pno");
 		System.out.println(" >>>>>>> clickBookmarkBtn-email, pno <<<<<<<<<" + email + ", " + pno);
-
 		int result = boardService.searchBookmark(email, pno, bno);
-
 		if (result >= 1) {
 			boardService.cancelBookmark(email, pno, bno);
 			response.getWriter().print(false);
