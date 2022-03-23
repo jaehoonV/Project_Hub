@@ -100,21 +100,19 @@ $(function () {
 	});
 });
 
-/* 게시글 고정 취소 */
+/* 게시글 고정 */
 $(function () {
-    $('.fix_cancel').on('click',function () {
-    	console.log('fix_cancel click!');
+    $('.fixed_icon, .fixIcon').on('click',function () {
     	var bno = $(this).attr('value');
-    	console.log(bno);
     	$.ajax({
     		type: "POST",
-    	    url: "/boardFixCancel",   //데이터를 주고받을 파일 주소
+    	    url: "/boardFix",  
     	    dataType: "json",
     	    data: "bno=" + bno,
     	    async: false,
-    	    success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+    	    success: function (data) {
     	        if(data == true){
-    	        	console.log('게시글 고정 취소!');
+    	        	console.log('게시글 고정!');
     	        	$('.apply_modal').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
     	            $('.apply_modal').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
     	            setTimeout(function() {
@@ -1860,7 +1858,7 @@ body{
 								<div class="fixBoxBody">
 									<div>
 										<div class="d-inline">
-											<i class="fas fa-thumbtack fix_cancel" value="${boardListFixed.bno}"></i>
+											<i class="fas fa-thumbtack fixed_icon" value="${boardListFixed.bno}"></i>
 											<c:forEach items="${boardListFixed.textList}" var="textList">
 												<c:out value="${textList.text_title}"/>
 											</c:forEach>
@@ -1951,13 +1949,10 @@ body{
 									</span>
 								</div>
 								<div class="boardStatus">
-									<form action="/boardFix" method="post">
-									<input type="hidden" name="bno" value="${boardList.bno}">
-									<button type="submit" class="boardFix">
-										<c:if test="${boardList.bfix eq '0'}"><i class="fas fa-thumbtack fixIcon"></i></c:if>
-										<c:if test="${boardList.bfix eq '1'}"><i class="fas fa-thumbtack fixIcon" style="color:#6449fc;"></i></c:if>
-									</button>
-									</form>
+									<div class="boardFix">
+										<c:if test="${boardList.bfix eq '0'}"><i class="fas fa-thumbtack fixIcon" value="${boardList.bno}"></i></c:if>
+										<c:if test="${boardList.bfix eq '1'}"><i class="fas fa-thumbtack fixIcon" value="${boardList.bno}" style="color:#6449fc;"></i></c:if>
+									</div>
 									<c:if test="${boardList.bwriter_email eq memberInfo.email || projectMemberInfo.pmadmin_num eq 1}">
 									<div class="dropdown d-inline">
 										<a role="button"  data-toggle="dropdown" 

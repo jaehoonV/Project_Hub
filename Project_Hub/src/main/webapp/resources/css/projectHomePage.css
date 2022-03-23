@@ -217,7 +217,7 @@
     outline: 0;
 }
 
-.fix_cancel{
+.fixed_icon{
    font-size: 13px;
     color: #6449fc;
     cursor: pointer;
@@ -1173,10 +1173,6 @@ body::-webkit-scrollbar-track {
    position: absolute;
    right: 30px;
    top: 30px;
-}
-
-.fixIcon {
-   margin-right: 20px;
 }
 
 .boardFooter {
@@ -2302,6 +2298,7 @@ img {
    all: unset;
    width: 1.6px;
    margin-right: 25px;
+   margin-top: 2px;
 }
 
 .boardFix:hover{

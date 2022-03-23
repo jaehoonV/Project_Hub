@@ -104,14 +104,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.boardListCnt(pno);
 	}
 
-	// 게시물 고정
-	@Override
-	public void boardFix(int bno) throws Exception {
-
-		// 게시물 고정
-		boardMapper.boardFix(bno);
-	}
-
 	// 게시물 삭제
 	@Override
 	public void deleteBoard(BoardDTO boardDTO) throws Exception {
@@ -255,7 +247,13 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.doBookmark(email, pno, bno);
 	}
 
-	// 게시글 고정 취소
+	// 게시물 고정
+	@Override
+	public void boardFix(int bno) throws Exception {
+		boardMapper.boardFix(bno);
+	}
+
+	// 게시물 고정 취소
 	@Override
 	public void boardFixCancel(int bno) throws Exception {
 		boardMapper.boardFixCancel(bno);
@@ -302,7 +300,7 @@ public class BoardServiceImpl implements BoardService {
 	public void modifyReply(ReplyDTO replyDTO) throws Exception {
 		boardMapper.modifyReply(replyDTO);
 	}
-	
+
 	// 업무 게시물 수
 	@Override
 	public List<Integer> taskReport_number(int pno) throws Exception {
@@ -312,13 +310,13 @@ public class BoardServiceImpl implements BoardService {
 		int progress = boardMapper.taskReport_number_progress(pno);
 		int complete = boardMapper.taskReport_number_complete(pno);
 		int hold = boardMapper.taskReport_number_hold(pno);
-		
+
 		taskReport_number_list.add(all);
 		taskReport_number_list.add(request);
 		taskReport_number_list.add(progress);
 		taskReport_number_list.add(complete);
 		taskReport_number_list.add(hold);
-		
+
 		return taskReport_number_list;
 	}
 }

@@ -283,27 +283,25 @@ $('#change_pw_btn').click(function() {
     $(function searchBookmark(){
     	var bname = $('.bookmark-search-input').val();
     	var bookmarkCount = 0;
-        console.log('bname >> ' + bname );
-    	console.log('searchBookmark');
     $.ajax({
         type: "POST",
-        url: "/searchBookmark_task",   //데이터를 주고받을 파일 주소
+        url: "/searchBookmark_task", 
         dataType: "json",
         data: "bname=" + bname,
         async: false,
-        success: function (data) {   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
+        success: function (data) {
         	console.log(data);
         	$('#bookmark_list_ul').empty();
         	if(data.length >=1){
         		data.forEach(function(item){
         			str = '<li id="bookmark_list_li">';
-        			if(item.bidentifier == '1'){
+        			if(item.bidentifier == '1'){ // 글
         				str += '<div class="board_kind"><i class="far fa-file-alt" style="width:50px;"></i><span class="board_kind_type">';
         				str += ' 글</span></div>';
-					}else if(item.bidentifier == '2'){
+					}else if(item.bidentifier == '2'){ // 업무
 						str += '<div class="board_kind"><i class="fas fa-list-ul" style="width:50px;"></i><span class="board_kind_type">';
 						str += ' 업무</span></div>';
-					}else{
+					}else{ // 일정
 						str += '<div class="board_kind"><i class="far fa-calendar-alt" style="width:50px;"></i><span class="board_kind_type">';
 						str += ' 일정</span></div>';
 					}
@@ -710,7 +708,7 @@ a:hover, a:active, a:link, a:visited {
             
             <div class="bookmark-search">
                		<i class="bi bi-search searchBtn"></i>
-               		<input type="text" class="bookmark-search-input" placeholder="게시글 제목을 입력해주세요">
+               		<input type="text" class="bookmark-search-input" placeholder="게시물 제목을 입력해주세요">
             </div>
          </div>
 

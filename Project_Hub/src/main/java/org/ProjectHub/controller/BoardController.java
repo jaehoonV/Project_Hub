@@ -98,10 +98,9 @@ public class BoardController {
 
 	// 게시물 고정/boardFix
 	@RequestMapping(value = "/boardFix", method = RequestMethod.POST)
-	public String boardFix(@RequestParam("bno") int bno) throws Exception {
-		// System.out.println(">>>>>>>>>>>>>>>boardFix<<<<<<<<<<<");
-		int result = boardService.boardFix_search(bno);
-
+	public void boardFix(@RequestParam("bno") int bno, HttpServletResponse response) throws Exception {
+		System.out.println(">>>>>>>>>>>>>>>boardFix<<<<<<<<<<<");
+		int result = boardService.boardFix_search(bno); // 게시물 고정 확인
 		if (result >= 1) {
 			// 게시물 고정 취소
 			boardService.boardFixCancel(bno);
@@ -109,7 +108,7 @@ public class BoardController {
 			// 게시물 고정
 			boardService.boardFix(bno);
 		}
-		return "redirect:/projectHomePage";
+		response.getWriter().print(true);
 	}
 
 	// 게시물 삭제
@@ -356,16 +355,6 @@ public class BoardController {
 		// email 세션 가져옴
 		String email = (String) session.getAttribute("email");
 		return boardService.searchBookmark_schedule(email, bname);
-	}
-
-	// 게시물 고정 취소
-	@ResponseBody
-	@RequestMapping(value = "/boardFixCancel", method = RequestMethod.POST)
-	public void boardFixCancel(@RequestParam("bno") int bno, HttpServletResponse response) throws Exception {
-		System.out.println(">>>>>>>>>>>>>>>boardFixCancel<<<<<<<<<<<");
-		// 게시물 고정 취소
-		boardService.boardFixCancel(bno);
-		response.getWriter().print(true);
 	}
 
 	// 글 수정 - 글 검색
