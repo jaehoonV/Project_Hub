@@ -102,11 +102,11 @@ public class BoardController {
 		System.out.println(">>>>>>>>>>>>>>>boardFix<<<<<<<<<<<");
 		int result = boardService.boardFix_search(bno); // 게시물 고정 확인
 		if (result >= 1) {
-			// 게시물 고정 취소
-			boardService.boardFixCancel(bno);
+			boardService.boardFixCancel(bno); // 게시물 고정 취소
+			// response.getWriter().print("cancel");
 		} else {
-			// 게시물 고정
-			boardService.boardFix(bno);
+			boardService.boardFix(bno); // 게시물 고정
+			// response.getWriter().print("fix");
 		}
 		response.getWriter().print(true);
 	}

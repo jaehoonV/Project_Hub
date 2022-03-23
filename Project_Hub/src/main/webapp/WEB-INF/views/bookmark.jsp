@@ -556,7 +556,7 @@ a:hover, a:active, a:link, a:visited {
 		</div>
 		<!-- modal closed-->
 		<div class="modal fade" id="mySetting">
-			<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable settingmodal">
 				<div class="modal-content">
 					<!-- Modal Header -->
 					<div class="modal-header" id="settingmodal-header">

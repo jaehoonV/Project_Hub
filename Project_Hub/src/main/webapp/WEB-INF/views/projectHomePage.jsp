@@ -100,7 +100,7 @@ $(function () {
 	});
 });
 
-/* 게시글 고정 */
+/* 게시물 고정 */
 $(function () {
     $('.fixed_icon, .fixIcon').on('click',function () {
     	var bno = $(this).attr('value');
@@ -112,7 +112,7 @@ $(function () {
     	    async: false,
     	    success: function (data) {
     	        if(data == true){
-    	        	console.log('게시글 고정!');
+    	        	console.log('게시물 고정!');
     	        	$('.apply_modal').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
     	            $('.apply_modal').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
     	            setTimeout(function() {
@@ -1436,7 +1436,7 @@ body{
 		</div>
 		<!-- modal closed-->
 		<div class="modal fade" id="mySetting">
-			<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable settingmodal">
 				<div class="modal-content">
 					<!-- Modal Header -->
 					<div class="modal-header" id="settingmodal-header">
