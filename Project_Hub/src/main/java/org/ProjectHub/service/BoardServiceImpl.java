@@ -77,10 +77,8 @@ public class BoardServiceImpl implements BoardService {
 	// 댓글 작성
 	@Override
 	public void writeReply(ReplyDTO replyDTO, MultipartHttpServletRequest mpRequest) throws Exception {
-
 		// 댓글 작성
 		boardMapper.writeReply(replyDTO);
-
 		// 파일 업로드
 		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(replyDTO, mpRequest);
 		int size = list.size();
@@ -92,7 +90,6 @@ public class BoardServiceImpl implements BoardService {
 	// 게시물 리스트
 	@Override
 	public List<BoardDTO> boardList(Pagination pagination) throws Exception {
-
 		// 게시물 리스트
 		return boardMapper.boardList(pagination);
 	}
@@ -100,21 +97,18 @@ public class BoardServiceImpl implements BoardService {
 	// 게시물 개수
 	@Override
 	public int boardListCnt(int pno) throws Exception {
-
 		return boardMapper.boardListCnt(pno);
 	}
 
 	// 게시물 삭제
 	@Override
 	public void deleteBoard(BoardDTO boardDTO) throws Exception {
-
 		// 글 삭제
 		boardMapper.deleteText(boardDTO);
 		// 업무 삭제
 		boardMapper.deleteTask(boardDTO);
 		// 일정 삭제
 		boardMapper.deleteSchedule(boardDTO);
-
 		// 게시물 삭제
 		boardMapper.deleteBoard(boardDTO);
 	}
@@ -156,9 +150,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateBfile(BoardDTO boardDTO, String[] files, String[] fileNames,
 			MultipartHttpServletRequest mpRequest) throws Exception {
-
 		// boardMapper.updateBoard(boardDTO);
-
 		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(boardDTO, files, fileNames, mpRequest);
 		Map<String, Object> tempMap = null;
 		int size = list.size();
