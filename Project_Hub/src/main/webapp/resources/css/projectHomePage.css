@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+.modify_menu_box{
+	min-width: 8rem !important;
+	width: 130px;
+	transform: translate3d(-125px, 22px, 0px) !important;
+}
+
+.modify_menu_box .dropdown-item{
+	padding: 0.25rem 0.5rem;
+}    
+
 .settingmodal{
 	width: 680px !important;
 }
@@ -186,7 +196,7 @@
 	color:#6449fc;
 }
 
-.modify_reply_modal{
+.modify_reply_modal, .delete_reply_modal{
 	position: absolute;
     display: none;
     z-index: 1;
@@ -197,11 +207,20 @@
     color: gray;
     font-size: 14px;
     cursor: pointer;
+    margin-right: 3px;
 }
 
-.modify_reply:hover{
+.delete_reply{
+	float: right;
+    color: gray;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modify_reply:hover, .delete_reply:hover{
 	font-weight: 600;
 	color: #6449fc;
+	text-decoration: underline;
 }
 
 .reply_content_input, .modify_reply_content_input{

@@ -151,6 +151,7 @@ $(function () {
     	});
     });
 });
+
 $(function(){ // 댓글 수정
 	$('.modify_reply').on('click',function(){
 		let modify_reply_display = $(this).parents('.replyBody').children('.modify_reply_modal').css('display');
@@ -160,6 +161,28 @@ $(function(){ // 댓글 수정
 		} else if(modify_reply_display == 'block'){
 			$(this).parents('.replyBody').children('.modify_reply_modal').css('display', 'none');
 		}
+	});
+});
+
+$(function(){ // 댓글 삭제
+	$('.delete_reply').on('click',function(){
+		var reply_no = $(this).attr('value');
+    	$.ajax({
+    		type: "POST",
+    	    url: "/deleteReply",  
+    	    dataType: "json",
+    	    data: "reply_no=" + reply_no,
+    	    async: false,
+    	    success: function (data) {
+    	        if(data == true){
+    	        	$('.apply_modal').css({ opacity: 0 }).animate({ opacity: 1 }, 900);
+    	            $('.apply_modal').css({ opacity: 1 }).animate({ opacity: 0 }, 400);
+    	            setTimeout(function() {
+		            	location.reload();
+		            	}, 1300);
+    	        }
+    	    }
+    	});
 	});
 });
 
@@ -1959,25 +1982,25 @@ body{
 											data-bs-display="static" aria-expanded="false">
 										<i class="fas fa-ellipsis-v" id="projectSet"></i>
 										</a>
-										<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="boardMenu">
+										<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start modify_menu_box" aria-labelledby="boardMenu">
 										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
 											<c:forEach items="${boardList.textList}" var="textList">
 												<div onclick="modifyText(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyText" style="cursor: pointer;">
-													<i class="fas fa-pencil-alt modifyText_btn"></i> 게시글 수정
+													<i class="fas fa-pencil-alt modifyText_btn"></i> 게시물 수정
 												</div>
 											</c:forEach>
 										</c:if>
 										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
 											<c:forEach items="${boardList.taskList}" var="taskList">
 										 		<div onclick="modifyTask(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifyTask" style="cursor: pointer;">
-												<i class="fas fa-pencil-alt"></i> 게시글 수정
+												<i class="fas fa-pencil-alt"></i> 게시물 수정
 												</div>
 											</c:forEach> 
 										</c:if>
 										<c:if test="${boardList.bwriter_email eq memberInfo.email}">
               								<c:forEach items="${boardList.scheduleList}" var="scheduleList">
               							 		<div onclick="modifySchedule(${boardList.bno})" class="dropdown-item" data-toggle="modal" data-target="#modifySchedule" style="cursor: pointer;">
-												<i class="fas fa-pencil-alt"></i> 게시글 수정
+												<i class="fas fa-pencil-alt"></i> 게시물 수정
 												</div>
 											</c:forEach>
 										</c:if>
@@ -1986,7 +2009,7 @@ body{
 												<form action="/deleteBoard" method="post">
 													<input type="hidden" name="bno" value="${boardList.bno}">
 													<button class="dropdown-item" type="submit">
-														<i class="far fa-trash-alt"></i> 게시글 삭제
+														<i class="far fa-trash-alt"></i> 게시물 삭제
 													</button>
 												</form>
 											</c:when>
@@ -1994,7 +2017,7 @@ body{
 												<form action="/deleteBoard" method="post">
 													<input type="hidden" name="bno" value="${boardList.bno}">
 													<button class="dropdown-item" type="submit">
-														<i class="far fa-trash-alt"></i> 게시글 삭제
+														<i class="far fa-trash-alt"></i> 게시물 삭제
 													</button>
 												</form>
 											</c:when>
@@ -2184,6 +2207,7 @@ body{
 										<span><c:out value="${replyList.reply_writer}"/></span>
 										<span class="writeDate"><fmt:formatDate pattern="yyyy/MM/dd" value="${replyList.reply_date}" /></span>
 										<c:if test="${replyList.rwriter_email eq memberInfo.email}">
+											<span class="delete_reply" value="${replyList.reply_no }">삭제</span>
 											<span class="modify_reply">수정</span>
 											<div class="modify_reply_modal">
 											<form action="/modifyReply" class="modifyReplyForm" method="post" enctype="multipart/form-data">
@@ -2193,7 +2217,7 @@ body{
                         					</div>
 										</c:if>
 									</p>
-									<p><c:out value="${replyList.reply_content}"/></p>
+								<p><c:out value="${replyList.reply_content}"/></p>
 									
 								<c:forEach items="${replyList.rfileList}" var="rfileList">
 									<div class="card fileBox">
@@ -2275,7 +2299,7 @@ body{
 		</div>
 	</div>
 	<!-- 댓글 전체 modal 끝 -->
-				<div class="replyWrite">
+			<div class="replyWrite"> <!-- 댓글 작성 -->
                <div class="profile"></div>
                   <div class="card replyWriteBox">
                      <div class="card-body replyWriteMain">
@@ -2286,12 +2310,12 @@ body{
                            <input type="text" name="reply_content" class="reply_content_input" placeholder="입력은 Enter 입니다.">
                            <input type="file" name="file" class="reply_input-file" class="upload-hidden" > 
                         </form>
-                        </div>
-                     </div>
-                  </div>
-					</div>
-				</div>
-			</c:forEach>
+                      </div>
+                   </div>
+               </div>
+			</div>
+	</div>
+</c:forEach>
 	
 	  <!--paginate -->
     <nav id="paginate" aria-label="Page navigation">
