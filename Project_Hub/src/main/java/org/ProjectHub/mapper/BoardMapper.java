@@ -155,4 +155,7 @@ public interface BoardMapper {
 
 	// 업무 게시물 수(보류)
 	public int taskReport_number_hold(int pno) throws Exception;
+	
+	// 댓글 삭제
+	public void deleteReply(ReplyDTO replyDTO) throws Exception;
 }

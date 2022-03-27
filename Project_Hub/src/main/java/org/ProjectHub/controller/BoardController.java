@@ -394,4 +394,13 @@ public class BoardController {
 
 		return "redirect:/projectHomePage";
 	}
+
+	// 댓글 삭제
+	@RequestMapping(value = "/deleteReply", method = RequestMethod.POST)
+	public void deleteReply(ReplyDTO replyDTO, HttpServletResponse response) throws Exception {
+		System.out.println(">>>>>>>>>>>>>>>deleteReply<<<<<<<<<<<");
+		boardService.deleteReply(replyDTO);
+		
+		response.getWriter().print(true);
+	}
 }

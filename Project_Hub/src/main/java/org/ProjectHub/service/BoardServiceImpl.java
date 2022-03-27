@@ -311,4 +311,9 @@ public class BoardServiceImpl implements BoardService {
 
 		return taskReport_number_list;
 	}
+
+	@Override
+	public void deleteReply(ReplyDTO replyDTO) throws Exception {
+		boardMapper.deleteReply(replyDTO);
+	}
 }

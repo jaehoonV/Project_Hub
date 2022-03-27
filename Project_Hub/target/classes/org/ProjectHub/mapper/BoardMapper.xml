@@ -385,6 +385,11 @@
 		reply_no = #{reply_no}
 	</update>
 	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		delete from reply where reply_no = #{reply_no}
+	</delete>
+	
 	<!-- 업무 게시물 수(all) -->
 	<select id="taskReport_number_all" resultType="int">
 		select count(*) from board

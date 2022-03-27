@@ -116,5 +116,8 @@ public interface BoardService {
 	
 	// 업무 게시물 수
 	public List<Integer> taskReport_number(int pno) throws Exception;
+	
+	// 댓글 삭제
+	public void deleteReply(ReplyDTO replyDTO) throws Exception;
 
 }
