@@ -283,6 +283,9 @@ $('#change_pw_btn').click(function() {
     $(function searchBookmark(){
     	var bname = $('.bookmark-search-input').val();
     	var bookmarkCount = 0;
+    	var bookmarkCount_text = 0;
+    	var bookmarkCount_task = 0;
+    	var bookmarkCount_schedule = 0;
     $.ajax({
         type: "POST",
         url: "/searchBookmark_task", 
@@ -312,6 +315,7 @@ $('#change_pw_btn').click(function() {
         			
 					$('#bookmark_list_ul').append(str);
         			bookmarkCount++;
+        			bookmarkCount_task = bookmarkCount;
         		});
         	}
         }
@@ -344,6 +348,7 @@ $('#change_pw_btn').click(function() {
         			
 					$('#bookmark_list_ul').append(str);
         			bookmarkCount++;
+        			bookmarkCount_text = bookmarkCount - bookmarkCount_task;
         		});
         	}
         }
@@ -376,11 +381,15 @@ $('#change_pw_btn').click(function() {
         			
 					$('#bookmark_list_ul').append(str);
         			bookmarkCount++;
+        			bookmarkCount_schedule = bookmarkCount - bookmarkCount_task - bookmarkCount_text;
         		});
         	}
         }
     });
     $('#bookmark_count').text(bookmarkCount);
+    $('#bookmark_count_text').text(bookmarkCount_text);
+    $('#bookmark_count_task').text(bookmarkCount_task);
+    $('#bookmark_count_schedule').text(bookmarkCount_schedule);
     
     $('.searchBtn').click(function(){
     	console.log('searchBtn click!');
@@ -715,6 +724,9 @@ a:hover, a:active, a:link, a:visited {
          <div class="main-content">
             <div class="search_title_area">
             	<span id="search_title">전체 </span><span id="bookmark_count"></span>
+            	<span id="search_title_sub"> 글 </span><span id="bookmark_count_text"></span>
+            	<span id="search_title_sub"> 업무 </span><span id="bookmark_count_task"></span>
+            	<span id="search_title_sub"> 일정 </span><span id="bookmark_count_schedule"></span>
             </div>
             <div class="bookmark_list_area">
             	<ul id="bookmark_list_ul">

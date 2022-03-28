@@ -2210,10 +2210,10 @@ body{
 											<span class="delete_reply" value="${replyList.reply_no }">삭제</span>
 											<span class="modify_reply">수정</span>
 											<div class="modify_reply_modal">
-											<form action="/modifyReply" class="modifyReplyForm" method="post" enctype="multipart/form-data">
-                           						<input type="hidden" name="reply_no" value="${replyList.reply_no }">
-                           						<input type="text" name="reply_content" class="modify_reply_content_input" value="${replyList.reply_content }" placeholder="입력은 Enter 입니다.">
-                        					</form>
+												<form action="/modifyReply" class="modifyReplyForm" method="post" enctype="multipart/form-data">
+                           							<input type="hidden" name="reply_no" value="${replyList.reply_no }">
+                           							<input type="text" name="reply_content" class="modify_reply_content_input" value="${replyList.reply_content }" placeholder="입력은 Enter 입니다.">
+                        						</form>
                         					</div>
 										</c:if>
 									</p>

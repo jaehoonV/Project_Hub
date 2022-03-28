@@ -50,7 +50,11 @@ label.error {
 }
 
 #bookmark_count{
-	font-size: 17px;
+    margin-right: 10px;
+}
+
+#bookmark_count, #bookmark_count_text, #bookmark_count_task, #bookmark_count_schedule{
+	font-size: 14px;
     color: #999;
     font-weight: 700;
 }
@@ -148,6 +152,12 @@ label.error {
 #search_title{
 	font-weight: 900;
     font-size: 16px;
+    color: #333;
+}
+
+#search_title_sub{
+	font-weight: 900;
+    font-size: 13px;
     color: #333;
 }
 
