@@ -18,84 +18,15 @@
 <!-- Spoqa Han Sans Neo -->
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="<c:url value="/resources/css/realcss.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery.validate 플러그인 삽입 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('#findPwChk').click(function() {
-			var name = $('#name').val();
-			var email = $('#email').val();
-
-			//이름이나 이메일 미입력시 validation 
-			if ($('#name').val() == "" || $('#email').val() == "") {
-				$('#findPasswordFrm').submit();
-			} else {
-				$.ajax({
-					type : "POST",
-					url : '/findPw',
-					data : {
-						name : name,
-						email : email
-					},
-					success : function(data) {
-						if (data == "true") {
-							$('#findPasswordFrm').submit();
-						} else if (data == "false") {
-							$('#sysError').css('display', 'none');
-							$('#error').css('display', 'block');
-						} else if (data == "sysError") {
-							$('#error').css('display', 'none');
-							$('#sysError').css('display', 'block');
-						}
-					}
-				});
-			}
-		});
-		$('#findPasswordFrm').validate({
-			rules : {
-				name : {
-					required : true
-				},
-				email : {
-					required : true,
-					email : true
-				}
-			},
-			messages : {
-				name : {
-					required : "이름을 입력해 주세요."
-				},
-				email : {
-					required : "이메일을 입력해 주세요.",
-					email : "이메일 형식에 맞춰 입력해주세요."
-				}
-			},
-			submitHandler : function() { //유효성 검사를 통과시 전송
-				findPasswordFrm.submit();
-				alert("인증 메일을 발송하였습니다. e-mail을 확인해주세요.");
-			},
-			success : function(e) {
-				//
-			}
-		});//end validate()
-	});
-</script>
-<!-- form validation 에러시 css -->
-<style type="text/css">
-input.error {
-	border: 1px solid red;
-}
-
-label.error {
-	position: absolute;
-	left: 200px;
-	color: red;
-}
-</style>
+<!-- js -->
+<script src="<c:url value="/resources/js/findPasswordPage.js"/>"></script>
+<script src="/resources/js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-primary">
 	<!-- Navigation-->
@@ -113,7 +44,7 @@ label.error {
 							<div class="col-lg-8 col-xl-6 text-center">
 								<div class="card shadow-lg border-0 rounded-lg mt-5">
 									<div class="card-header">
-										<h3 class="text-center font-weight-light my-4">Find Password</h3>
+										<h3 class="text-center font-weight-light my-4">비밀번호 찾기</h3>
 									</div>
 									<div class="card-body">
 										<form action="/login" method="post" id="findPasswordFrm">
@@ -150,7 +81,5 @@ label.error {
 			</div>
 		</footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/resources/js/scripts.js"></script>
 </body>
 </html>

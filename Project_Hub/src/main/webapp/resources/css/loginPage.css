@@ -32,6 +32,17 @@
     --ph-dark-blue: #290D8c;
     --ph-background-color: #30478c;
     --ph-btn-hover: #212529
+}
+
+/* form validation 에러시 css */
+input.error {
+	border: 1px solid red !important;
+}
+
+label.error {
+	position: absolute !important;
+	left: 200px !important;
+	color: red !important;
 } 
  
 .wrap {	

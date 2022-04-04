@@ -1,4 +1,16 @@
 @charset "UTF-8";
+
+/* form validation 에러시 css */
+input.error {
+	border: 1px solid red !important;
+}
+
+label.error {
+	position: absolute !important;
+	left: 180px !important;
+	color: red !important;
+} 
+
 .join{
 	all:unset;
 }

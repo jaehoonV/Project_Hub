@@ -18,81 +18,13 @@
 <!-- Spoqa Han Sans Neo -->
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="<c:url value="/resources/css/realcss.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery.validate 플러그인 삽입 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('#resetPwChk').click(function() {
-
-			var email = '${email}';
-			var password = $('#password').val();
-			var passwordChk = $('#passwordChk').val();
-
-			//비밀번호, 비밀번호 확인 미입력시 validation 
-			if ($('#password').val() == "" || $('#passwordChk').val() == "") {
-				$('#resetPwFrm').submit();
-			} else {
-				$.ajax({
-					type : "POST",
-					url : '/resetPw',
-					data : {
-						email : email,
-						password : password,
-					},
-					success : function(data) {
-						$('#resetPwFrm').submit();
-					}
-				});
-			}
-		});
-		$('#resetPwFrm').validate({
-			rules : {
-				password : {
-					required : true,
-					rangelength : [ 8, 16 ]
-				},
-				passwordChk : {
-					required : true,
-					equalTo : '#password'
-				}
-			},
-			messages : {
-				password : {
-					required : "비밀번호를 입력해 주세요.",
-					rangelength : "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
-				},
-				passwordChk : {
-					required : "비밀번호 확인을 입력해 주세요.",
-					equalTo : "비밀번호와 동일하게 입력해 주세요."
-				}
-			},
-			submitHandler : function() { //유효성 검사를 통과시 전송
-				resetPwFrm.submit();
-				console.log("submitHandler >>> function");
-				alert("비밀번호 재설정이 완료되었습니다.");
-			},
-			success : function(e) {
-				//
-			}
-		});//end validate()
-	});
-</script>
-<!-- form validation 에러시 css -->
-<style type="text/css">
-input.error {
-	border: 1px solid red;
-}
-
-label.error {
-	position: absolute;
-	left: 200px;
-	color: red;
-}
-</style>
+<!-- js -->
+<script src="<c:url value="/resources/js/passwordReset.js"/>"></script>
 </head>
 <body class="bg-primary">
 	<!-- Navigation-->
@@ -110,7 +42,7 @@ label.error {
 							<div class="col-lg-8 col-xl-6 text-center">
 								<div class="card shadow-lg border-0 rounded-lg mt-5">
 									<div class="card-header">
-										<h3 class="text-center font-weight-light my-4">Reset Password</h3>
+										<h3 class="text-center font-weight-light my-4">비밀번호 변경</h3>
 									</div>
 									<div class="card-body">
 										<form action="/login" method="post" id="resetPwFrm">
@@ -120,11 +52,11 @@ label.error {
 											</div> -->
 												<div class="form-floating mb-3">
 													<input class="form-control" id="password" type="password" name="password" />
-													<label for="password">비밀번호</label>
+													<label for="password">새 비밀번호</label>
 												</div>
 												<div class="form-floating mb-3">
 													<input class="form-control" id="passwordChk" type="password" name="passwordChk" />
-													<label for="password">비밀번호 확인</label>
+													<label for="password">새 비밀번호 확인</label>
 												</div>
 												<div class="d-grid">
 													<button class="btn btn-primary btn-xl" type="button" id="resetPwChk">변경 완료</button>

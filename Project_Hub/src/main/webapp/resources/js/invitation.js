@@ -1,0 +1,56 @@
+$(document).ready(function() {
+	$('#loginCheck').click(function() {
+		var email = $('#email').val();
+		var password = $('#password').val();
+		var pno = $('#pno').val();
+		// 이메일이나 비밀번호 미입력시 validation
+		if ($('#email').val() == "" || $('#password').val() == "") {
+			$('#loginForm').submit();
+		} else {
+			$.ajax({
+				type : "POST",
+				url : '/invitation',
+				data : {
+					email : email,
+					password : password,
+					pno : pno
+				},
+				success : function(data) {
+					if (data == "true") {
+						$('#loginForm').submit();
+					} else if (data == "false") {
+						$('#auth_error').css('display', 'none');
+						$('#error').css('display', 'block');
+					} else if (data == "noauth") {
+						$('#error').css('display', 'none');
+						$('#auth_error').css('display', 'block');
+					}
+				}
+			});
+		}
+	});
+	$('#loginForm').validate({
+		rules : {
+			email : {
+				required : true
+			},
+			password : {
+				required : true
+			}
+		},
+		messages : {
+			email : {
+				required : "이메일을 입력해 주세요."
+			},
+			password : {
+				required : "비밀번호를 입력해 주세요."
+			}
+		},
+		submitHandler : function() { // 유효성 검사를 통과시 전송
+			loginForm.submit();
+		},
+		success : function(e) {
+			//
+		}
+	});// end validate()
+});

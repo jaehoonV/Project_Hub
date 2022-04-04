@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+a:hover {
+	text-decoration: none !important;
+}
+
+.pList a {
+	color: #212529;
+	text-decoration: none;
+	outline: none
+}
+
+.pList a:hover, .pList a:active, .pList a:link, .pList a:visited {
+	text-decoration: none;
+	color: #212529;
+}
+
 .settingmodal{
 	width: 680px !important;
 }

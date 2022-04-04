@@ -1468,7 +1468,6 @@ body {
 								<div class="my-right-list-2" id="adjust_mail">
 									<span id="useremail">${memberInfo.email }</span>
 								</div></li>
-							<br>
 							<li class="edit-adjust"><div class="my-right-list-1">이름</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<span id="username">${memberInfo.name }</span> <i class="far fa-edit"></i>
@@ -1480,7 +1479,6 @@ body {
 										<button class="ch-btn ch-confirm-btn" type="submit">확인</button>
 									</form>
 								</div></li>
-							<br>
 							<li class="edit-adjust"><div class="my-right-list-1">회사명</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<span id="usercompany_name">${memberInfo.company_name }</span> <i class="far fa-edit"></i>
@@ -1492,7 +1490,6 @@ body {
 										<button class="ch-btn ch-confirm-btn" type="submit">확인</button>
 									</form>
 								</div></li>
-							<br>
 							<li class="edit-adjust"><div class="my-right-list-1">직급</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<span id="userjob_position">${memberInfo.job_position }</span> <i class="far fa-edit"></i>
@@ -1504,7 +1501,6 @@ body {
 										<button class="ch-btn ch-confirm-btn" type="submit">확인</button>
 									</form>
 								</div></li>
-							<br>
 							<li class="edit-adjust"><div class="my-right-list-1">휴대폰번호</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<span id="userphone_num">${memberInfo.phone_num }</span> <i class="far fa-edit"></i>
@@ -1516,7 +1512,6 @@ body {
 										<button class="ch-btn ch-confirm-btn" type="submit">확인</button>
 									</form>
 								</div></li>
-							<br>
 							<li class="edit-adjust"><div class="my-right-list-1">전화번호</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<span id="usertel_num">${memberInfo.tel_num }</span> <i class="far fa-edit"></i>
@@ -1528,7 +1523,6 @@ body {
 										<button class="ch-btn ch-confirm-btn" type="submit">확인</button>
 									</form>
 								</div></li>
-							<br>
 							<li class="edit-adjust" id="passwordArea"><div class="my-right-list-1">비밀번호</div>
 								<div class="my-right-list-2 defaultview d-block">
 									<Strong>비밀번호 재설정이 가능합니다.</Strong>

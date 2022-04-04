@@ -23,73 +23,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery.validate 플러그인 삽입 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$('#loginCheck').click(function() {
-			var email = $('#email').val();
-			var password = $('#password').val();
-
-			//이메일이나 비밀번호 미입력시 validation 
-			if ($('#email').val() == "" || $('#password').val() == "") {
-				$('#loginForm').submit();
-			} else {
-				$.ajax({
-					type : "POST",
-					url : '/loginCheck',
-					data : {
-						email : email,
-						password : password
-					},
-					success : function(data) {
-						if (data == "true") {
-							$('#loginForm').submit();
-						} else if (data == "false") {
-							$('#auth_error').css('display', 'none');
-							$('#error').css('display', 'block');
-						} else if (data == "noauth") {
-							$('#error').css('display', 'none');
-							$('#auth_error').css('display', 'block');
-						}
-					}
-				});
-			}
-		});
-		$('#loginForm').validate({
-			rules : {
-				email : {
-					required : true
-				},
-				password : {
-					required : true
-				}
-			},
-			messages : {
-				email : {
-					required : "이메일을 입력해 주세요."
-				},
-				password : {
-					required : "비밀번호를 입력해 주세요."
-				}
-			},
-			submitHandler : function() { //유효성 검사를 통과시 전송
-				loginForm.submit();
-			},
-		});//end validate()
-	});
-</script>
-<!-- form validation 에러시 css -->
-<style type="text/css">
-input.error {
-	border: 1px solid red;
-}
-
-label.error {
-	position: absolute;
-	left: 200px;
-	color: red;
-}
-</style>
+<!-- js -->
+<script src="<c:url value="/resources/js/loginPage.js"/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/js/scripts.js"></script>
 </head>
 <body class="bg-primary">
 	<!-- Navigation-->
@@ -145,7 +82,5 @@ label.error {
 			</div>
 		</footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/resources/js/scripts.js"></script>
 </body>
 </html>
