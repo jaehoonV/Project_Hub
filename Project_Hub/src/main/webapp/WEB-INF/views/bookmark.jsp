@@ -9,6 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>북마크</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/resources/assets/favicon.ico">
+<!-- css -->
 <link href="/resources/css/bookmark.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
