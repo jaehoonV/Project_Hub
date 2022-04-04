@@ -1,5 +1,29 @@
-/* 업무 리포트 차트, 퍼센트 */
 
+/*업무 시작일 마감일*/
+$(function(){
+	$('#task_start').flatpickr({
+		dateFormat: "Y-m-d",
+		minDate:"today"
+	});
+	
+	$('#task_last').flatpickr({
+		dateFormat: "Y-m-d",
+		minDate:"today"
+	});
+	
+	$('#schedule_start').flatpickr({
+		dateFormat: "Y-m-d",
+		minDate:"today"
+	});
+	
+	$('#schedule_last').flatpickr({
+		dateFormat: "Y-m-d",
+		minDate:"today"
+	});
+	
+});
+
+/* 업무 리포트 차트, 퍼센트 */
 $(function(){
 	var all_num = $('#taskReport_number').text();
 	var request_num = $('.trn1').text();
@@ -179,12 +203,17 @@ $(function () { // 업무상태,우선순위 추가 버튼 클릭
     });
 });
 
-
-$(function(){ // 업무 시작일, 마감일에 현재 날짜 입력
+$(function(){ // 일정 시작일, 마감일에 현재 날짜 입력
 	$('#task_write').on('click',function(){
-		console.log("task_write click!");
 		$('#task_start').val(new Date().toISOString().slice(0, 10));
 		$('#task_last').val(new Date().toISOString().slice(0, 10));
+	});
+});
+
+$(function(){ // 업무 시작일, 마감일에 현재 날짜 입력
+	$('#schedule_write').on('click',function(){
+		$('#schedule_start').val(new Date().toISOString().slice(0, 10));
+		$('#schedule_last').val(new Date().toISOString().slice(0, 10));
 	});
 });
 

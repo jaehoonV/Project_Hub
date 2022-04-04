@@ -36,12 +36,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- js -->
 <script src="<c:url value="/resources/js/projectHomePage.js"/>"></script>
-
-<script type="text/javascript">
-
-
-
-</script>
+<!-- flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 	<header>
@@ -551,7 +548,7 @@
 								<div class="write" data-toggle="modal" data-target="#writeTask" id="task_write">
 									<i class="fas fa-list-ul"></i> 업무
 								</div>
-								<div class="write" data-toggle="modal" data-target="#writeSchedule">
+								<div class="write" data-toggle="modal" data-target="#writeSchedule" id="schedule_write">
 									<i class="far fa-calendar-alt"></i> 일정
 								</div>
 							</div>
@@ -1189,9 +1186,9 @@
 							<div style="margin-top: 35px;">
 								<hr>
 								<label for="task_start" class="col-form-label">시작일</label>
-								<input name="task_start" type="date" class="form-control" id="task_start"></input>
+								<input name="task_start" type="date" class="form-control" id="task_start" placeholder="날짜를 선택해주세요."/>
 								<label for="task_last" class="col-form-label">마감일</label>
-								<input name="task_last" type="date" class="form-control" id="task_last"></input>
+								<input name="task_last" type="date" class="form-control" id="task_last" placeholder="날짜를 선택해주세요."/>
 							</div>
 						</div>
 						<!-- Modal footer -->
@@ -1232,9 +1229,9 @@
 							<input name="schedule_location" type="text" class="form-control" onclick="execDaumPostcode()" id="schedule_location" readonly="readonly" style="background-color: white;"></input>
 							<hr>
 							<label for="schedule_start" class="col-form-label">시작일</label>
-							<input name="schedule_start" type="datetime-local" class="form-control" id=schedule_start></input>
+							<input name="schedule_start" type="date" class="form-control" id="schedule_start" placeholder="날짜를 선택해주세요."/>
 							<label for="schedule_last" class="col-form-label">마감일</label>
-							<input name="schedule_last" type="datetime-local" class="form-control" id="schedule_last"></input>
+							<input name="schedule_last" type="date" class="form-control" id="schedule_last" placeholder="날짜를 선택해주세요."/>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="modal_submit smallBtn">올리기</button>
