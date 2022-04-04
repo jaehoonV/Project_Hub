@@ -64,7 +64,6 @@ public class BoardController {
 		// System.out.println(">>>>>>>>>>>>>>>writeTask<<<<<<<<<<<<");
 		System.out.println(boardDTO);
 		System.out.println(taskDTO);
-
 		// 게시물 작성, 업무 작성
 		boardService.writeTask(boardDTO, taskDTO, mpRequest);
 
