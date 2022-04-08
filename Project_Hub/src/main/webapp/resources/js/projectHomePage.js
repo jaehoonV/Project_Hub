@@ -25,11 +25,11 @@ $(function(){
 
 /* 업무 리포트 차트, 퍼센트 */
 $(function(){
-	var all_num = $('#taskReport_number').text();
-	var request_num = $('.trn1').text();
-	var progress_num = $('.trn2').text();
-	var complete_num = $('.trn3').text();
-	var hold_num = $('.trn4').text();
+	let all_num = $('#taskReport_number').text();
+	let request_num = $('.trn1').text();
+	let progress_num = $('.trn2').text();
+	let complete_num = $('.trn3').text();
+	let hold_num = $('.trn4').text();
 	
 	$('.task_report_request_percent').text(Math.floor(request_num/all_num*100));
 	$('.task_report_progress_percent').text(Math.floor(progress_num/all_num*100));
@@ -58,7 +58,6 @@ $(function(){
 	        plugins: {
 	            legend: {
 	                position: 'right'
-	                
 	            }
 	        }
 	    }

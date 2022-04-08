@@ -2002,17 +2002,17 @@ label.error {
 }
 
 .leftmenu {
-	border: 1px solid #9e1212;
 	border-collapse: collapse;
 	width: 100%;
 	height: 90%;
-	text-align: left !important;
 	padding: 0;
+	margin-bottom: 0 !important;
 }
 
 .leftmenu_li {
 	list-style: none;
-	padding: 10px 30px;
+	font-size: 1.1rem;
+	padding: 18px;
 }
 
 .logo-box {

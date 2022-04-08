@@ -289,6 +289,12 @@
 	<select id="likeCheck" resultType="int">
 		select like_check from
 		board_like where bno = #{bno} and email = #{email}
+		UNION ALL
+		SELECT 2 AS like_check
+  		FROM board_like
+ 		WHERE NOT EXISTS 
+ 		(SELECT like_check FROM board_like WHERE bno = #{bno} and email = #{email})
+        AND ROWNUM = 1
 	</select>
 
 	<!-- 좋아요 더하기 -->
