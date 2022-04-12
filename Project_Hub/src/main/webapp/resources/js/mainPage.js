@@ -291,8 +291,7 @@ $(function () {
             break;
          }
              
-            function user_modify () {
-                 console.log("user_modify >>>>> " + valueId + valueById);
+           function user_modify () {
            $.ajax({
                 type: "post",
                 url : "/modify",
@@ -308,8 +307,8 @@ $(function () {
                 error: function(error) {
                    console.log('error 전달됨')
                 }
-           });
-          }; //user_modify end
+           	});
+           }; //user_modify end
           
      }); //$('.ch-confirm-btn').click(function() end
   		

@@ -194,17 +194,10 @@ public class MemberController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String Modify(MemberDTO memberDTO, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("valueId") String valueId, @RequestParam("valueById") String valueById) throws Exception {
-		System.out.println(">>>>>>>>>> Modify 메소드 진입 <<<<<<<<<<");
-		System.out.println(">>>>>>>>>> valueId : " + valueId);
-		System.out.println(">>>>>>>>>>> valueById : " + valueById);
-
+		System.out.println(">>>>>>>>>> Modify 메소드 진입 <<<<<<<<<<" + valueId + valueById);
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
-
-		System.out.println("email >>>>>> " + email);
-
 		memberService.modify(email, valueId, valueById);
-
 		String modifyClass = "";
 		switch (valueId) {
 		case "change_name":
@@ -226,7 +219,6 @@ public class MemberController {
 			modifyClass = "password";
 			break;
 		}
-		System.out.println("modifyClass >>>>>>>> " + modifyClass);
 		session.setAttribute(modifyClass, valueById);
 		return "redirect:/";
 

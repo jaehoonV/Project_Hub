@@ -723,6 +723,7 @@ label.error {
 
 .settingUl {
 	list-style: none;
+	margin-bottom: 2rem !important;
 }
 
 .settingul ul li {
