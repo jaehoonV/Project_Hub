@@ -9,3 +9,21 @@
 > Spring 5.0.7.RELEASE, MyBatis, BootStrap4.6, Apache Tomcat9.0, Oracle 11g, eXERD<br/>
 > java, HTML5, css, javascript, jquery, json, jsp, xml
 
+## 주요 화면 캡쳐<br/>
+
+<h3 align="center">Main Page</h3>
+<p align="center"> 
+<img src="./Project_Hub/screenshot/PH_screenshot1.PNG" width="820" height="470" />
+</p>
+<h3 align="center">BookMark Page</h3>
+<p align="center"> 
+<img src="./Project_Hub/screenshot/PH_screenshot4.PNG" width="820" height="490" />
+</p>
+<h3 align="center">Project Home Page</h3>
+<p align="center"> 
+<img src="./Project_Hub/screenshot/PH_screenshot2.PNG" width="820" height="490" />
+</p>
+<h3 align="center">Board</h3>
+<p align="center"> 
+<img src="./Project_Hub/screenshot/PH_screenshot3.PNG" width="480" height="420" />
+</p>
